@@ -1,25 +1,10 @@
 import React from 'react';
-<<<<<<< HEAD
-import Login from "./page/login"
-import Reg from "./page/reg"
-// import { Button } from "antd"
-// import {  } from "react-router-dom"
-
-function App() {
-  return (
-    <div className="App">
-
-        <Login />
-      <Reg/>
-    </div>
-  );
-=======
 
 import './App.css';
 import '../node_modules/antd/dist/antd.css';
-import Login from './page/Home/login';
-import UserInfo from './page/Home/userInfo';
-
+import Login from './page/login';
+import UserInfo from './page/userInfo';
+import Reg from './page/reg'
 
 import {Route,Link,NavLink, Router,Switch,Redirect} from 'react-router-dom';
 import {Layout,Menu, Breadcrumb} from 'antd';
@@ -75,10 +60,10 @@ function App() {
                   <Content style={{ padding: '0 24px', minHeight: 280 }}>
 
                         <Switch>
-
-                            <Route path='/login' component={Login}></Route>
                             <Route path='/user' component={UserInfo}></Route>
-                            {/* <Route path='/home' component={}></Route> */}
+                            <Route path='/login' component={Login}></Route>
+                            <Route path='/reg' component={Reg}></Route>
+
                             <Redirect from='/' to='/user' exact></Redirect>
 
                         </Switch>
@@ -92,7 +77,6 @@ function App() {
         </Layout>
 
 
->>>>>>> 41c75a4cdd1109113913fedabfd70c3cd10f1839
 }
 
 export default App;

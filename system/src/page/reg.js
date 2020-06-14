@@ -6,6 +6,8 @@ import "../page/reg.css"
 export default class reg extends Component {
     handlereg(){
        alert("登录")
+
+
     }
     render() {
         return (

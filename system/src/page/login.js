@@ -40,7 +40,7 @@ export default class login extends Component {
         // console.log(username)
     }
     changePassword=()=>{
-    
+
     }
     render() {
         // console.log(this.props)
@@ -51,7 +51,9 @@ export default class login extends Component {
 
         return (
             <div className="login">
-                <input ref="username" onChange={this.changeUsername}/>
+
+                {/* <input ref="username" onChange={this.changeUsername}/> */}
+
                 <h2>登录页面</h2>
                 <Form>
                     <Form.Item

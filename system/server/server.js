@@ -1,4 +1,5 @@
 const express = require('express') // commonJS
+// const routers = require('./router')
 const routers = require('./router')
 
 // 启动一个服务器

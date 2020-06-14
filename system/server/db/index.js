@@ -4,7 +4,7 @@ const {MongoClient,ObjectId} = mongodb;//{_id:ObjectId(id)}
 
 const config = {
     dburl:'mongodb://localhost:27017',
-    dbname:'laoxie'
+    dbname:'h5'
 }
 
 const connect = ()=>{
@@ -13,14 +13,14 @@ const connect = ()=>{
             if(err) {
                 return reject(err);
             }
-        
+
             // 连接数据库，无则自动创建
             let db = client.db(config.dbname);
-            
+
             resolve({db,client})
         });
     })
-    
+
 }
 
 
@@ -114,7 +114,7 @@ exports.find = (colName,query,{limit,skip,sort}={})=>{
         }
 
         res = await res.toArray();
-        
+
         resolve(res);
 
         client.close();

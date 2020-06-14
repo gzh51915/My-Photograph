@@ -4,7 +4,7 @@ const Router = express.Router();
 
 const session = require('express-session');
 
-// const goods = require('./goods'); // express.router()
+const goods = require('./goods'); // express.router()
 // const user = require('./user');
 // const verifycode = require('./verifycode');
 
@@ -32,7 +32,7 @@ Router.use(session({
 }))
 
 Router.use(express.json(), express.urlencoded())
-// Router.use('/goods', goods);
+Router.use('/goods', goods);
 // Router.use('/user', user);
 // Router.use('/verifycode', verifycode);
 

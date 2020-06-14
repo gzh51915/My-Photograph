@@ -8,12 +8,11 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.3.3",
+    "express-session": "^1.17.1",
+    "mongodb": "^3.5.9",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-<<<<<<< HEAD
     "react-router": "^5.2.0",
-=======
->>>>>>> 41c75a4cdd1109113913fedabfd70c3cd10f1839
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
   },

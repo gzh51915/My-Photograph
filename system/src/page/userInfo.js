@@ -1,40 +1,34 @@
 import React from 'react';
 import { Table, Button } from 'antd';
-
+import http from './http'
 
 const columns = [
 	{
+
 	  title: 'UserName',
-	  dataIndex: 'name',
+	  dataIndex: 'username',
+	  key:'_id',
 	},
 	{
 	  title: 'PassWord',
-	  dataIndex: 'age',
+	  dataIndex: 'password',
+
 	},
 	{
 	  title: 'Address',
 	  dataIndex: 'address',
+
 	},
 	{
 		title: 'Action',
 		dataIndex: '',
-		key:'x',
-		render:()=> <a>Delete</a>,
+		
+		render:()=> <Button>Delete</Button>
  	},
   ];
 
-  const data = [];
-  for (let i = 0; i < 30; i++) {
-	data.push({
-	  key: i,
-	  name: `Edward King ${i}`,
-	  age: 32,
-	  address: `London, Park Lane no. ${i}`,
-	});
-  }
-
-
 class UserInfo extends React.Component{
+
 	state = {
 		selectedRowKeys: [], // Check here to configure the default column
 		loading: false,
@@ -57,14 +51,28 @@ class UserInfo extends React.Component{
 		this.setState({ selectedRowKeys });
 	  };
 
+	  async componentDidMount(){
+
+		const { data } = await http.get('/goods');
+		console.log(data);
+		this.setState({
+			data,
+		})
+
+  }
+
+
 	  render() {
-		const { loading, selectedRowKeys } = this.state;
+		const {data, loading, selectedRowKeys } = this.state;
+		// console.log(data,selectedRowKeys);
 
 		const rowSelection = {
 		  selectedRowKeys,
 		  onChange: this.onSelectChange,
 		};
+
 		const hasSelected = selectedRowKeys.length > 0;
+
 		return (
 		  <div>
 			<div style={{ marginBottom: 16 }}>
@@ -75,7 +83,7 @@ class UserInfo extends React.Component{
 				{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
 			  </span>
 			</div>
-			<Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+			<Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={data} />
 		  </div>
 		);
 	  }
