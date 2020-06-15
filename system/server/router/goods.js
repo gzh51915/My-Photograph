@@ -8,7 +8,7 @@ const db = require('../db')
 // 查询所有商品 /goods/
 Router.get('/', async (req, res) => {
     // console.log("勇气")
-    const { page = 1, size = 20, sort = { add_time: -1 } } = req.query;
+    const { page = 1, size = 10, sort = { add_time: -1 } } = req.query;
     const limit = size * 1;
     const skip = (page - 1) * size;
 
@@ -58,5 +58,24 @@ Router.get('/:id', async (req, res) => {
         })
     }
 })
+
+    // 3.拦截前端提交数据的POST请求
+Router.delete("/del/:id", function(req, res){
+
+    const {id} = req.params;
+
+        // 查询数据库，根据id删除数据
+    db.find('/usersinfo',{"id":id}).remove(function(err, data){
+
+            if(err) throw err;
+            res.send({
+                code: 1,
+                data,
+                msg: 'success'
+            }) //返回响应结果给前端
+    })
+})
+
+
 
 module.exports = Router
