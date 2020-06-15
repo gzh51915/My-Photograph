@@ -4,21 +4,26 @@ import 'antd/dist/antd.css';
 import { Button, Form, Input, Checkbox } from "antd"
 
 export default class login extends Component {
+    formRef = React.createRef();
     constructor() {
         super();
         this.state = {
             username: "",
             password: ""
         }
+
     }
 
     //登录
     handlesubmit = (e) => {
+        const [form] = Form.useForm();
+        console.log(form)
         // const form = this.props.form;
         // const username = form.getFieldValue("username")
         // console.log("username", username)
         alert("登录")
-        console.log(this)
+        // console.log(this)
+        console.log(this.props)
         const username = this.refs.username.props.value;
         const password = this.refs.password.props.value;
         // console.log(this.refs.username.props.value)
@@ -99,3 +104,6 @@ export default class login extends Component {
         )
     }
 }
+
+// const WrapLogin =Form.useForm()(login)
+//  WrapLogin;
