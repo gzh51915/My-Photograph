@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Button } from 'antd';
+import { Table, Button,Pagination} from 'antd';
 import http from './http'
 
 const columns = [
@@ -23,18 +23,12 @@ const columns = [
 		title: 'Action',
 		dataIndex: '',
 
-		render: () => <Button 
-		// onClick={deleteItem.bind(this)}
-		>Delete</Button>
-	},
-];
+		render:()=> <Button>Delete</Button>
+ 	},
+  ];
 
-class UserInfo extends React.Component {
+class UserInfo extends React.Component{
 
-	constructor() {
-		super()
-		// this.deleteItem = this.deleteItem.bind(this)
-	}
 
 	state = {
 		selectedRowKeys: [], // Check here to configure the default column
@@ -64,6 +58,9 @@ class UserInfo extends React.Component {
 		console.log(data);
 		this.setState({
 			data,
+			pagination:{
+				pageSize:3
+			}
 		})
 
 	}
@@ -71,11 +68,9 @@ class UserInfo extends React.Component {
 	// deleteItem(idx) {
 
 
-	// }
-
-
+	}
 	render() {
-		const { data, loading, selectedRowKeys } = this.state;
+		const {data,pagination, loading, selectedRowKeys } = this.state;
 		// console.log(data,selectedRowKeys);
 
 		const rowSelection = {
@@ -96,9 +91,9 @@ class UserInfo extends React.Component {
 					</span>
 				</div>
 
-				<Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={data} />
-				<Button>全删</Button>
-			</div>
+			<Table rowKey="_id" pagination={pagination}   rowSelection={rowSelection} columns={columns} dataSource={data} />
+			<Button>全删</Button>
+		  </div>
 		);
 	}
 }
