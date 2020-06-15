@@ -30,6 +30,7 @@ Router.get('/', async (req, res) => {
             msg: 'fail'
         }
     }
+    console.log(data);
     // 请求<->响应
     // console.log(result)
     res.send(data)
@@ -43,7 +44,7 @@ Router.post('/', (req, res) => { //增
 Router.get('/:id', async (req, res) => {
     const { id } = req.params;
     console.log(id)
-    const result = await db.find('goods', { _id: id });
+    const result = await db.find('usersinfo', { _id: id });
     if (result.length > 0) {
         res.send({
             code: 1,
@@ -59,20 +60,28 @@ Router.get('/:id', async (req, res) => {
     }
 })
 
-    // 3.拦截前端提交数据的POST请求
-Router.delete("/del/:id", function(req, res){
+   // 3.拦截前端提交数据的POST请求
+// Router.delete("/:id",async function(req, res){
 
+//     const {id} = req.params;
+
+//         // 查询数据库，根据id删除数据
+//     const result =await  db.delete('/usersinfo',{ _id: id})
+//     console.log(result);
+
+// })
+
+Router.delete('/:id',function(req,res){
     const {id} = req.params;
 
-        // 查询数据库，根据id删除数据
-    db.find('/usersinfo',{"id":id}).remove(function(err, data){
+    console.log(333);
 
-            if(err) throw err;
-            res.send({
-                code: 1,
-                data,
-                msg: 'success'
-            }) //返回响应结果给前端
+    db.delete("usersinfo",{_id:id},function(err,result){
+        if(err){
+            res.send("删除失败");
+            return;
+        }
+        res.send(result);
     })
 })
 

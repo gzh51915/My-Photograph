@@ -66,7 +66,6 @@ class UserInfo extends React.Component{
 	}
 
 	deleteItem(idx){
-		
 
 
 	}
@@ -92,7 +91,7 @@ class UserInfo extends React.Component{
 			  </span>
 			</div>
 
-			<Table rowKey="_id"pagination={pagination}   rowSelection={rowSelection} columns={columns} dataSource={data} />
+			<Table rowKey="_id" pagination={pagination}   rowSelection={rowSelection} columns={columns} dataSource={data} />
 			<Button>全删</Button>
 		  </div>
 		);
