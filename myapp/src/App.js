@@ -6,7 +6,7 @@ import Home from './pages/home'
 import List from './pages/list'
 import Reg from './pages/reg'
 import Login from './pages/login'
-
+import 'antd/dist/antd.css'
 function App() {
   return (
     <div className="App">
