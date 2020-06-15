@@ -5,33 +5,35 @@ import http from './http'
 const columns = [
 	{
 
-	  title: 'UserName',
-	  dataIndex: 'username',
-	  key:'_id',
+		title: 'UserName',
+		dataIndex: 'username',
+		key: '_id',
 	},
 	{
-	  title: 'PassWord',
-	  dataIndex: 'password',
+		title: 'PassWord',
+		dataIndex: 'password',
 
 	},
 	{
-	  title: 'Address',
-	  dataIndex: 'address',
+		title: 'Address',
+		dataIndex: 'address',
 
 	},
 	{
 		title: 'Action',
 		dataIndex: '',
 
-		render:()=> <Button onClick={deleteItem.bind(this)}>Delete</Button>
- 	},
-  ];
+		render: () => <Button 
+		// onClick={deleteItem.bind(this)}
+		>Delete</Button>
+	},
+];
 
-class UserInfo extends React.Component{
+class UserInfo extends React.Component {
 
-	constructor(){
-
-		this.deleteItem = this.deleteItem.bind(this)
+	constructor() {
+		super()
+		// this.deleteItem = this.deleteItem.bind(this)
 	}
 
 	state = {
@@ -43,10 +45,10 @@ class UserInfo extends React.Component{
 		this.setState({ loading: true });
 		// ajax request after empty completing
 		setTimeout(() => {
-		  this.setState({
-			selectedRowKeys: [],
-			loading: false,
-		  });
+			this.setState({
+				selectedRowKeys: [],
+				loading: false,
+			});
 		}, 1000);
 	};
 
@@ -56,7 +58,7 @@ class UserInfo extends React.Component{
 		this.setState({ selectedRowKeys });
 	};
 
-	async componentDidMount(){
+	async componentDidMount() {
 
 		const { data } = await http.get('/goods');
 		console.log(data);
@@ -66,37 +68,37 @@ class UserInfo extends React.Component{
 
 	}
 
-	deleteItem(idx){
+	// deleteItem(idx) {
 
 
-	}
+	// }
 
 
 	render() {
-		const {data, loading, selectedRowKeys } = this.state;
+		const { data, loading, selectedRowKeys } = this.state;
 		// console.log(data,selectedRowKeys);
 
 		const rowSelection = {
-		  selectedRowKeys,
-		  onChange: this.onSelectChange,
+			selectedRowKeys,
+			onChange: this.onSelectChange,
 		};
 
 		const hasSelected = selectedRowKeys.length > 0;
 
 		return (
-		  <div>
-			<div style={{ marginBottom: 16 }}>
-			  <Button type="primary" onClick={this.start} disabled={!hasSelected} loading={loading}>
-				Reload
+			<div>
+				<div style={{ marginBottom: 16 }}>
+					<Button type="primary" onClick={this.start} disabled={!hasSelected} loading={loading}>
+						Reload
 			  </Button>
-			  <span style={{ marginLeft: 8 }}>
-				{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
-			  </span>
-			</div>
+					<span style={{ marginLeft: 8 }}>
+						{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
+					</span>
+				</div>
 
-			<Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={data} />
-			<Button>全删</Button>
-		  </div>
+				<Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={data} />
+				<Button>全删</Button>
+			</div>
 		);
 	}
 }

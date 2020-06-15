@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Form, Input, Checkbox, InputNumber } from "antd"
+import { Button, Form, Input, InputNumber } from "antd"
 import "../page/reg.css"
 
 

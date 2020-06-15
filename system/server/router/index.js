@@ -33,7 +33,7 @@ Router.use(session({
 
 Router.use(express.json(), express.urlencoded())
 Router.use('/goods', goods);
-// Router.use('/user', user);
+Router.use('/user', user);
 // Router.use('/verifycode', verifycode);
 
 

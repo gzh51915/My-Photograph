@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import "./login.css"
 import 'antd/dist/antd.css';
+import { resLogin } from "../api"
 import { Button, Form, Input, Checkbox } from "antd"
 
 
@@ -19,13 +20,14 @@ export default class login extends Component {
     };
 
     //登录
-    handlesubmit = (e) => {
+    handlesubmit = async (e) => {
         const username = this.refs.username.props.value;
         const password = this.refs.password.props.value;
         if (username && password) {
-            alert("登录")
-        }else{
-            // location.href=""
+            // alert("登录")
+            const result = await resLogin(username, password)
+            console.log("result", result)
+        } else {
             alert("没登录")
         }
     }
