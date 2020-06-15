@@ -3,8 +3,9 @@ import "./login.css"
 import 'antd/dist/antd.css';
 import { Button, Form, Input, Checkbox } from "antd"
 
+
 export default class login extends Component {
-    formRef = React.createRef();
+    // formRef = React.createRef();
     constructor() {
         super();
         this.state = {
@@ -13,54 +14,37 @@ export default class login extends Component {
         }
 
     }
+    onFinish = values => {
+        alert(values.username);
+    };
 
     //登录
     handlesubmit = (e) => {
-        const [form] = Form.useForm();
-        console.log(form)
-        // const form = this.props.form;
-        // const username = form.getFieldValue("username")
-        // console.log("username", username)
-        alert("登录")
-        // console.log(this)
-        console.log(this.props)
         const username = this.refs.username.props.value;
         const password = this.refs.password.props.value;
-        // console.log(this.refs.username.props.value)
-        console.log(username,password)
-        // e.preventDefault();
-        // console.log(this.props)
-        // this.props.form.validateFields((err, values) => {
-        //     if (!err) {
-        //         console.log('Received values of form:', values)
-        //     }
-        // })
-        // console.log(this.state.username)
+        if (username && password) {
+            alert("登录")
+        }else{
+            // location.href=""
+            alert("没登录")
+        }
     }
-    changeUsername=()=> {
+    changeUsername = () => {
         let username = this.refs.username.value;
         this.setState({
             username
         })
-        // console.log(username)
     }
-    changePassword=()=>{
+    changePassword = () => {
 
     }
+
     render() {
-        // console.log(this.props)
-        // const form = this.props.form;
-        // console.log(form)
-        // const [form] = Form.useForm();
-        // console.log(form)
-
         return (
             <div className="login">
 
-                {/* <input ref="username" onChange={this.changeUsername}/> */}
-
                 <h2>登录页面</h2>
-                <Form>
+                <Form onFinish={this.onFinish}>
                     <Form.Item
                         label="用户名："
                         name="username"
@@ -72,7 +56,7 @@ export default class login extends Component {
                             },
                         ]}
                     >
-                        <Input placeholder="请输入用户名"  ref="username" onChange={this.changeUsername}/>
+                        <Input placeholder="请输入用户名" ref="username" onChange={this.changeUsername} />
                     </Form.Item>
 
                     <Form.Item
@@ -86,13 +70,8 @@ export default class login extends Component {
                             },
                         ]}
                     >
-                        <Input.Password placeholder="请输入密码" ref="password" onChange={this.changePassword}/>
+                        <Input.Password placeholder="请输入密码" ref="password" onChange={this.changePassword} />
                     </Form.Item>
-
-                    {/* <Form.Item
-                        name="remember" valuePropName="checked">
-                        <Checkbox checked={this.state.visible}>Remember me</Checkbox>
-                    </Form.Item> */}
 
                     <Form.Item>
                         <Button type="primary" className="checkIn" htmlType="submit" onClick={this.handlesubmit}>
