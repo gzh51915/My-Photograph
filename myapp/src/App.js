@@ -1,14 +1,23 @@
 import React from 'react';
-// import logo from './logo.svg';
+import {Route,Switch,} from 'react-router-dom'
 import './App.css';
-import Tab from './components/Tab'
+
+import Home from './pages/home'
+import List from './pages/list'
+import Reg from './pages/reg'
+import Login from './pages/login'
 
 function App() {
   return (
-    <div className='App'>
-      <Tab />
+    <div className="App">
+      <Switch>
+        <Route path="/home" component={Home} />
+        <Route path="/list" component={List} />
+        <Route path="/reg" component={Reg} />
+        <Route path="/login" component={Login} />
+      </Switch>
     </div>
-  )
+  );
 }
 
-export default Tab;
+export default App;
