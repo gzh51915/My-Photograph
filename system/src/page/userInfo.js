@@ -22,19 +22,24 @@ const columns = [
 	{
 		title: 'Action',
 		dataIndex: '',
-		
-		render:()=> <Button>Delete</Button>
+
+		render:()=> <Button onClick={deleteItem.bind(this)}>Delete</Button>
  	},
   ];
 
 class UserInfo extends React.Component{
 
+	constructor(){
+
+		this.deleteItem = this.deleteItem.bind(this)
+	}
+
 	state = {
 		selectedRowKeys: [], // Check here to configure the default column
 		loading: false,
-	  };
+	};
 
-	  start = () => {
+	start = () => {
 		this.setState({ loading: true });
 		// ajax request after empty completing
 		setTimeout(() => {
@@ -43,15 +48,15 @@ class UserInfo extends React.Component{
 			loading: false,
 		  });
 		}, 1000);
-	  };
+	};
 
-	  onSelectChange = selectedRowKeys => {
+	onSelectChange = selectedRowKeys => {
 		console.log('selectedRowKeys changed: ', selectedRowKeys);
 
 		this.setState({ selectedRowKeys });
-	  };
+	};
 
-	  async componentDidMount(){
+	async componentDidMount(){
 
 		const { data } = await http.get('/goods');
 		console.log(data);
@@ -59,10 +64,15 @@ class UserInfo extends React.Component{
 			data,
 		})
 
-  }
+	}
+
+	deleteItem(idx){
 
 
-	  render() {
+	}
+
+
+	render() {
 		const {data, loading, selectedRowKeys } = this.state;
 		// console.log(data,selectedRowKeys);
 
@@ -83,10 +93,12 @@ class UserInfo extends React.Component{
 				{hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
 			  </span>
 			</div>
+
 			<Table rowKey="_id" rowSelection={rowSelection} columns={columns} dataSource={data} />
+			<Button>全删</Button>
 		  </div>
 		);
-	  }
+	}
 }
 
 

@@ -7,7 +7,7 @@ const db = require('../db')
 
 // 查询所有商品 /goods/
 Router.get('/', async (req, res) => {
-    console.log("勇气")
+    // console.log("勇气")
     const { page = 1, size = 20, sort = { add_time: -1 } } = req.query;
     const limit = size * 1;
     const skip = (page - 1) * size;
@@ -31,7 +31,7 @@ Router.get('/', async (req, res) => {
         }
     }
     // 请求<->响应
-    console.log(result)
+    // console.log(result)
     res.send(data)
 })
 
