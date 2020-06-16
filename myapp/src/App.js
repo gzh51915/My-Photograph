@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route,Switch,} from 'react-router-dom'
+import {Route,Switch,Redirect} from 'react-router-dom'
 import './App.css';
 
 import Home from './pages/home'
@@ -10,11 +10,16 @@ import 'antd/dist/antd.css'
 function App() {
   return (
     <div className="App">
+      
+
+      {/* 路由的配置 */}
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/list" component={List} />
         <Route path="/reg" component={Reg} />
         <Route path="/login" component={Login} />
+        <Route path="/notfound" component={()=><div>404</div>} />
+        <Redirect from="/" to="/home" exact />
       </Switch>
     </div>
   );
