@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Button, Form, Input, InputNumber } from "antd"
-import "../page/reg.css"
+import "../page/insert.css"
+import {Link} from "react-router-dom"
 
 
 export default class reg extends Component {
@@ -24,9 +25,13 @@ export default class reg extends Component {
         }
     }
     render() {
+        console.log(this.props.location.state)
         return (
-            <div className="reg">
-                <h2>注册页面</h2>
+            <div className="insert">
+                <div className="head">
+                    <Button className="return"> <Link to={"/user"}>返回</Link></Button>
+                    <h2>增加或修改</h2>
+                </div>
                 <Form name="nest-messages">
                     <Form.Item name={['user', 'name']} label="用户名：" rules={[
                         {

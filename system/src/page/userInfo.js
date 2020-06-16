@@ -1,6 +1,8 @@
 import React from "react";
 import { Table, Button, Pagination } from "antd";
 import http from "./http";
+import { Redirect, Link } from "react-router-dom";
+import { resRemove, Allremove, resUpdate } from "../api";
 
 const columns = [
   {
@@ -20,7 +22,26 @@ const columns = [
     title: "Action",
     dataIndex: "",
 
-    render: () => <Button size="small" danger>Delete</Button>,
+    render: (props) => {
+      const id = props._id
+      const remove = async () => {
+        await resRemove(id)
+        return <UserInfo />
+      }
+      const update = async () => {
+        console.log(props._id)
+        const id = props._id
+        const data = await resUpdate(id)
+        console.log(data)
+      
+      }
+      return (
+        <div>
+          <Button size="small" ><Link to={{pathname:"/inser",state:{data:"data"}}} onClick={update}>Update</Link></Button>
+          <Button size="small" danger onClick={remove}>Delete</Button>
+        </div>
+      )
+    }
   },
 ];
 
@@ -66,8 +87,18 @@ class UserInfo extends React.Component {
   deleteItem = (idx) => {
     console.log(11111);
   };
+  removeAll = async () => {
+    // console.log(this.props)
+    const find = await Allremove()
+    console.log("find", find)
+  }
 
   render() {
+    const user = JSON.parse(sessionStorage.getItem("user_msg"))
+    console.log("user", user)
+    if (!user) {
+      return <Redirect to="/login" />
+    }
     const { data, pagination, loading, selectedRowKeys } = this.state;
     // console.log(data,selectedRowKeys);
 
@@ -89,6 +120,9 @@ class UserInfo extends React.Component {
           >
             Reload
           </Button>
+          <Button type="primary" style={{ float: "right" }}>
+            <Link to="/inser">增加</Link>
+          </Button>
           <span style={{ marginLeft: 8 }}>
             {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
           </span>
@@ -101,7 +135,7 @@ class UserInfo extends React.Component {
           columns={columns}
           dataSource={data}
         />
-        <Button>全删</Button>
+        <Button onClick={this.removeAll}>全删</Button>
       </div>
     );
   }
