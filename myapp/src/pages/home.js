@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import {Carousel ,Input,Select} from 'antd'
 import Tab from '../components/tab'
 import Tab2 from '../components/tab2.js'
-import { HomeOutlined, CarOutlined,EyeOutlined, MessageOutlined ,UserOutlined} from '@ant-design/icons';
+
 import '../css/home.css'
 const { Option } = Select;
 export default class home extends Component {
@@ -24,6 +24,7 @@ export default class home extends Component {
     onChange = (a, b,c) => {
         console.log(a, b, c);
       }
+    
     render() {
         const {tab,tab2} = this.state
         // console.log(this.state,tab);
@@ -59,13 +60,7 @@ export default class home extends Component {
                         <section id="t-box">
                             
                         </section>
-                        <footer>
-                            <span><HomeOutlined style={{fontSize:20}}/>首页</span>
-                            <span><CarOutlined style={{fontSize:20}}/>目的地</span>
-                            <span><EyeOutlined style={{fontSize:20}}/>发现</span>
-                            <span><MessageOutlined style={{fontSize:20}}/>客服</span>
-                            <span><UserOutlined style={{fontSize:20}}/>我的</span>
-                        </footer>
+                        
                     </div>
                     
 
