@@ -4,7 +4,7 @@ const Router = express.Router(); // function(){}
 
 
 const db = require('../db')
-const token = require('../utils/token')
+// const token = require('../utils/token')
 
 
 // 获取所有用户
@@ -24,7 +24,7 @@ Router.post('/', async (req, res) => {
 
         // 写入数据库
         try {
-            await db.create('user', { username, password, regtime: new Date() })
+            await db.create('usersinfo', { username, password, regtime: new Date() })
             console.log('user=', username, password)
             res.send({
                 code: 200
@@ -53,20 +53,21 @@ Router.post('/login', async (req, res) => {
 
     // 查询数据库，如果得到数据说明用户名和密码正确
     // 反之，查询不到数据，则表示用户名和密码错误
-    const result = await db.find('user', { username, password })
+    const result = await db.find("usersinfo", { username, password })
 
     if (result.length > 0) {
         // 生成一个token，并返回给前端
-        const authorization = token.create({ username })
+        // const authorization = token.create({ username })
         res.send({
             code: 200,
             data: {
-                authorization
+               msg:'success'
             }
         })
     } else {
         res.send({
-            code: 400
+            code: 400,
+            msg:'fail'
         })
     }
 })
@@ -88,11 +89,28 @@ Router.get('/verify', async (req, res) => {
 })
 
 // 获取某一个用户的信息
-Router.get('/:id', (req, res) => {
+Router.get('/:id',async (req, res) => {
     // 获取id值
     // const id = req.query
     const { id } = req.params
-    res.send(`id为${id}的用户`)
+
+    const result = await db.find('user', { _id: id });
+
+
+    if (result.length > 0) {
+        res.send({
+            code: 1,
+            data: result[0],
+            msg: 'success'
+        })
+    } else {
+        res.send({
+            code: 0,
+            data: [],
+            msg: 'fail'
+        })
+    }
+
 })
 
 module.exports = Router

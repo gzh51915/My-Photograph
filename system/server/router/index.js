@@ -5,7 +5,7 @@ const Router = express.Router();
 const session = require('express-session');
 
 const goods = require('./goods'); // express.router()
-// const user = require('./user');
+const user = require('./user');
 // const verifycode = require('./verifycode');
 
 // CORS

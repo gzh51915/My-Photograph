@@ -9,7 +9,7 @@ const config = {
 
 const connect = ()=>{
     return new Promise((resolve,reject)=>{
-        MongoClient.connect(config.dburl, {useNewUrlParser: true},(err, client) =>{
+        MongoClient.connect(config.dburl, {useNewUrlParser: true,},(err, client) =>{
             if(err) {
                 return reject(err);
             }
@@ -49,6 +49,9 @@ exports.delete = (colName,query)=>{
 
         let {db,client} = await connect();
 
+        if(query._id){
+            query._id = ObjectId(query._id);
+        }
         // 获取集合
         let col = db.collection(colName);
 
