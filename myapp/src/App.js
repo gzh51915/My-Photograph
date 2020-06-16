@@ -1,17 +1,29 @@
 import React from 'react';
-import {Route,Switch,Redirect} from 'react-router-dom'
+import {Route,Switch,Redirect,withRouter } from 'react-router-dom'
 import './App.css';
-
+import { HomeOutlined, CarOutlined,EyeOutlined, MessageOutlined ,UserOutlined} from '@ant-design/icons';
 import Home from './pages/home'
 import List from './pages/list'
 import Reg from './pages/reg'
 import Login from './pages/login'
+import './css/common.css'
 import 'antd/dist/antd.css'
-function App() {
+function App(props) {
+  const goto = (path) =>{
+    const {history} = props
+    history.push(path)
+    
+  }
   return (
     <div className="App">
       
-
+      <footer>
+          <span><HomeOutlined style={{fontSize:20}} onClick={()=>goto('/home')}/>首页</span>
+          <span><CarOutlined style={{fontSize:20}} onClick={()=>goto('/list')}/>目的地</span>
+          <span><EyeOutlined style={{fontSize:20}} onClick={()=>goto('/find')}/>发现</span>
+          <span><MessageOutlined style={{fontSize:20}} />客服</span>
+          <span><UserOutlined style={{fontSize:20}} onClick={()=>goto('/mine')}/>我的</span>
+      </footer>
       {/* 路由的配置 */}
       <Switch>
         <Route path="/home" component={Home} />
@@ -24,5 +36,6 @@ function App() {
     </div>
   );
 }
+App = withRouter(App)
 
 export default App;
