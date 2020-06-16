@@ -1,7 +1,7 @@
 import axios from "axios"
 import qs from "qs"
 import { message } from "antd"
-axios.defaults.baseURL = "http://localhost:1915/api"
+axios.defaults.baseURL = "http://10.3.135.25:1915/api"
 
 axios.interceptors.request.use((config) => {
     let data = config.data;
