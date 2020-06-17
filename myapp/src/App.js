@@ -4,6 +4,7 @@ import './App.css';
 import { HomeOutlined, CarOutlined,EyeOutlined, MessageOutlined ,UserOutlined} from '@ant-design/icons';
 import Home from './pages/home'
 import List from './pages/list'
+import List2 from './pages/list2'
 import Reg from './pages/reg'
 import Login from './pages/login'
 import Find from './pages/find'
@@ -29,6 +30,7 @@ function App(props) {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/list" component={List} />
+        <Route path="/list2" component={List2} />
         <Route path="/reg" component={Reg} />
         <Route path="/login" component={Login} />
         <Route path="/find" component={Find}/>
