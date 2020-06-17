@@ -73,12 +73,21 @@ Router.get("/:id", async (req, res) => {
 
 
 
-Router.delete("/:id",async function(req, res){
-    var id = req.params.id;
-    console.log(666,id);
-    // 查询数据库，根据id删除数据
-    const  result = await db.delete("usersinfo",{_id:id})
-    console.log('9999=',result);
+Router.delete("/:id", async function (req, res) {
+  var id = req.params.id;
+  console.log(666, id);
+  // 查询数据库，根据id删除数据
+  const result = await db.delete("usersinfo", { _id: id })
+  console.log('9999=', result);
+})
+
+
+Router.post("/update", async function (req, res) {
+  var id = req.params.id;
+  console.log(666, id);
+  // 查询数据库，根据id删除数据
+  const result = await db.delete("usersinfo", { _id: id })
+  console.log('9999=', result);
 })
 
 module.exports = Router;

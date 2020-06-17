@@ -28,8 +28,10 @@ export default class login extends Component {
       const result = await resLogin(username, password)
       if (result.code === 200) {
         const user = result;
-        console.log(user)
+        console.log(user,22222222222)
         message.success("登录成功")
+        console.log(this.props);
+        
         this.props.history.replace("/user")
         sessionStorage.setItem("user_msg", JSON.stringify(user))
       } else {
@@ -53,6 +55,7 @@ export default class login extends Component {
 
   render() {
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
+    console.log("user=*******",user)
     if (user !== null && user.data.id) {
       return <Redirect to="/user" />
     }
