@@ -54,14 +54,16 @@ Router.post('/login', async (req, res) => {
     // 查询数据库，如果得到数据说明用户名和密码正确
     // 反之，查询不到数据，则表示用户名和密码错误
     const result = await db.find("usersinfo", { username, password })
-
+    console.log('111111111111111',result);
     if (result.length > 0) {
         // 生成一个token，并返回给前端
         // const authorization = token.create({ username })
         res.send({
             code: 200,
             data: {
-               msg:'success'
+               msg:'success',
+               id:result[0]._id,
+               username
             }
         })
     } else {

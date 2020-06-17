@@ -14,5 +14,5 @@ app.use('/api',routers)
 
 // 监听端口：2**16
 app.listen(1915,()=>{
-    console.log('server is runing')
+    console.log('server is runing~~~~~~~~~~~~~~~~')
 })

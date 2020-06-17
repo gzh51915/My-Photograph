@@ -1,0 +1,93 @@
+.page-head {
+  position: relative;
+  width: 100%;
+  height: 11.2vw;
+  line-height: 11.2vw;
+  background: #fff;
+  border-bottom: 1px solid #cccccc;
+  text-align: left;
+  padding: 0 15px;
+}
+
+.page-head a {
+  display: inline-block;
+  position: relative;
+  z-index: 1;
+}
+
+.page-head a i {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+}
+
+.page-head h1 {
+  position: absolute;
+  top: 0;
+  right: 20%;
+  bottom: 0;
+  left: 20%;
+  text-align: center;
+  font-size: 5.33333vw;
+  color: #333;
+  overflow: hidden;
+}
+
+#rc-tabs-0-panel-1 {
+  padding-left: 10px !important;
+  padding-top: 10px !important;
+}
+
+.ul-img {
+  margin-bottom: 1.33333vw;
+}
+
+.ul-img li {
+  position: relative;
+  width: 46%;
+  height: 22.4vw;
+  margin: 0 4% .43rem 0;
+  border-radius: .1rem;
+  overflow: hidden;
+  float: left;
+}
+
+.ul-img li h3 {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  transform: translateY(-50%);
+  font-size: 3.2vw;
+  color: #fff;
+}
+
+.ul-img li h3 span {
+  display: block;
+  font-weight: 700;
+  font-size: 4.53333vw;
+}
+
+.ul-img li:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+.ul-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.ant-tabs-content-left {
+  position: fixed;
+}

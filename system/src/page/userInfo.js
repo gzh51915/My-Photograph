@@ -96,14 +96,14 @@ class UserInfo extends React.Component {
 
   removeAll = async () => {
     // console.log(this.props)
-    const find = await Allremove()
-    console.log("find", find)
-  }
+    const find = await Allremove();
+    console.log("find", find);
+  };
 
   render() {
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
     if (!user) {
-      return <Redirect to="/login" />
+      return <Redirect to="/login" />;
     }
     const { data, pagination, loading, selectedRowKeys } = this.state;
     console.log(data);
