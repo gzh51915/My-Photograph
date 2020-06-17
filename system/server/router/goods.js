@@ -45,6 +45,7 @@ Router.get("/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
   const result = await db.find("usersinfo", { _id: id });
+  console.log(666666666666,result);
   if (result.length > 0) {
     res.send({
       code: 1,
@@ -73,12 +74,37 @@ Router.get("/:id", async (req, res) => {
 
 
 
-Router.delete("/:id",async function(req, res){
-    var id = req.params.id;
-    console.log(666,id);
-    // 查询数据库，根据id删除数据
-    const  result = await db.delete("usersinfo",{_id:id})
-    console.log('9999=',result);
+// Router.delete("/:id",async function(req, res){
+//     var id = req.params.id;
+//     console.log(666,id);
+//     // 查询数据库，根据id删除数据
+//     const  result = await db.delete("usersinfo",{_id:id})
+//     console.log('9999=',result);
+//     res.send(result.result.n)
+// })
+function formatData({ status = 1, data = [], msg = 'success' } = {}) {
+  if (status === 0) {
+      msg = 'fail'
+  }
+  return {
+      status,
+      data,
+      msg
+  }
+}
+
+Router.delete('/:id', async(req, res) => {
+  let { id } = req.params;
+  // 查询数据库
+  let result = await db.delete('usersinfo', { _id: id });
+  // console.log('~~~~~~~~~~~~~~',result);
+  if (result.deletedCount > 0) {
+      res.send(formatData())
+  } else {
+      res.send(formatData({
+          status: 0
+      }))
+  }
 })
 
 module.exports = Router;

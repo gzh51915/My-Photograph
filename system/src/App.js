@@ -53,10 +53,10 @@ function App() {
                 </Menu.Item> */}
 
               </SubMenu>
-              <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
+              {/* <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
                 <Menu.Item key="9">option9</Menu.Item>
 
-              </SubMenu>
+              </SubMenu> */}
             </Menu>
           </Sider>
           <Content style={{ padding: '0 24px', minHeight: 280 }}>

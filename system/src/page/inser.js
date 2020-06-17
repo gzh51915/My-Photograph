@@ -25,7 +25,7 @@ export default class reg extends Component {
         }
     }
     render() {
-        console.log(this.props.location.state)
+        console.log(this.props.location.state.props)
         return (
             <div className="insert">
                 <div className="head">
