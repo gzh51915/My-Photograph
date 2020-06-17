@@ -1,10 +1,41 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: Gainsboro !important;
+}
+
+ul, ol, li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img {
+  display: block;
+}
+
+u, em, i {
+  font-style: normal;
+}
+
+h1, h2, h4, h5, h6, h3, b, strong {
+  font-weight: normal;
+}
+
 footer {
   position: fixed;
+  z-index: 10;
   bottom: 0;
   width: 100%;
   height: 13.33333vw;
   display: flex;
   margin: 0 auto 0;
+  background: #fff;
   border-top: 1px solid #ccc;
   justify-content: space-around;
   align-items: center;
