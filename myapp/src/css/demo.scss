@@ -1,0 +1,98 @@
+@function vw($px) {
+    @return ($px / 750) *100vw;
+}
+.demo{
+      margin-bottom: 46px;
+}
+.item-tr{
+    padding: vw(20);
+    .item-list{
+        height: vw(200);
+        position: relative;
+        padding-left: vw(262);
+        margin-bottom: 14px;
+        border-bottom: 1px solid #cccccc;
+    }
+    .advertising{
+        display: block;
+        margin-bottom: vw(46);
+        border-radius: .08rem;
+        overflow: hidden;
+        position: relative;
+    }
+    .img-outer{
+        width: vw(240);
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        border-radius: .09rem;
+        i{
+            position: absolute;
+            z-index: 1;
+            display: block;
+            text-align: center;
+            color: #fff;
+            font-size: vw(20);
+        }
+        .type{
+            top: 0;
+            left: 0;
+            width: vw(100);
+            overflow: hidden;
+            height: .81rem;
+            line-height: .81rem;
+            border-radius: .09rem 0 .43rem 0;
+            background-color: #314e56;
+            
+        }
+        .tag{
+            right: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: vw(40);
+            line-height: vw(40);
+            border-radius: 0 0 .09rem .09rem;
+            background-color: #667384;
+        }
+    }
+    img {
+        width: 100%;
+        height: 100%;
+    }
+    #txt-outer {
+        h2{
+            line-height: vw(36);
+            overflow: hidden;
+            color: #333;
+            font-size: vw(28);
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            text-align: left;
+        }
+        .money{
+            // margin-top: 40px;            
+            line-height: 1;
+            text-align: right;
+            p{
+                text-align: left;
+                height: vw(30);
+                overflow: hidden;
+                margin-top: vw(24);
+                font-size: vw(22);
+                color: #999;
+            }
+            .crred em{
+                font-size: vw(40);
+            }
+            li{
+                float: left;
+                color: #f66;
+            }
+
+        }
+    }
+}
