@@ -6,12 +6,18 @@ import '../css/list.css'
 const { Option } = Select;
 const { TabPane } = Tabs;
 export default class list extends Component {
-    constructor(){
+    constructor(props){
         super()
         this.state = {
         mode: 'left',
         list:[]
     };
+    }
+    goto = (title)=>{
+        const {history} = this.props
+        console.log(title);
+        
+        history.push('/list2/' + title)
     }
     async componentDidMount(){
         let data = await http.get("/all1")
@@ -51,7 +57,7 @@ export default class list extends Component {
                         <ul className="ul-img" key={index}>
                             {
                                 JSON.parse(item.data).map((ele,idx)=>{
-                                    return <li key={idx}>
+                                    return <li key={idx} onClick={this.goto.bind(this,ele.title)} >
                                         <h3>
                                             <span>{ele.title}</span>
                                             {ele.subtitle}
