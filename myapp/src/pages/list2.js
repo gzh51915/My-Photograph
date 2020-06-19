@@ -21,6 +21,10 @@ export default class list2 extends Component {
         })
         
       }
+      goto = (id)=>{
+        const {history} = this.props
+        history.push('/detail/' + id)
+      }
       back = ()=>{
         const {history} = this.props
         history.push('/list')
@@ -54,12 +58,14 @@ export default class list2 extends Component {
                 <ul className="item-tr" style={{background:"#fff"}}>
                            {
                               data.map((item,index)=>{ 
-                                return <li className="item-list" key={index}>
+                                return <li className="item-list" key={index} onClick={()=>{
+                                  this.goto(item.bussinessProductId)
+                                }}>
                                         <figure className="img-outer">
                                             <i className="type">{item.attributeName}</i>
                                             {/* eval把字符串转换成数组 */}
                                             <i className="tag">{eval(item.departureCitys)[0] + item.cityType}</i>
-                                            <img src={item.picture}/>
+                                            <img src={item.picture} alt=""/>
                                         </figure>
                                         <div id="txt-outer">
                                             <h2>{item.name}</h2>
