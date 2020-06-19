@@ -9,7 +9,7 @@ function Tab2({ tab2 }) {
                     
                     tab2.title.map((ele,idx)=>{
                            return <a key={idx}>
-                                 <img src={tab2.src[idx]}/><span>{ele}</span>
+                                 <img src={tab2.src[idx]} alt=""/><span>{ele}</span>
                              </a>
                         })
                 }

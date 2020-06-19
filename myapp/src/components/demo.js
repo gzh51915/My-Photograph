@@ -19,7 +19,7 @@ export default function Demo({data,data2}) {
                                     <figure className="img-outer">
                                         <i className="type">{item.productTypeName}</i>
                                         <i className="tag">{item.cityName+item.cityType}</i>
-                                        <img src={item.imgurl}/>
+                                        <img src={item.imgurl} alt=""/>
                                     </figure>
                                     <div id="txt-outer">
                                         <h2>{item.productName}</h2>
@@ -44,7 +44,7 @@ export default function Demo({data,data2}) {
                                     <figure className="img-outer">
                                         <i className="type">{item.productTypeName}</i>
                                         <i className="tag">{item.cityName+item.cityType}</i>
-                                        <img src={item.imgurl}/>
+                                        <img src={item.imgurl} alt=""/>
                                     </figure>
                                     <div id="txt-outer">
                                         <h2>{item.productName}</h2>
