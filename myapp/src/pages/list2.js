@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import {ArrowLeftOutlined} from '@ant-design/icons'
 import {Input,Select,Tabs } from 'antd'
+import http from '../utils/http'
 const { Option } = Select;
 const { TabPane } = Tabs;
 export default class list2 extends Component {
@@ -8,12 +9,15 @@ export default class list2 extends Component {
         super(props);
         this.state = {
           title:"",
-          
+          data:[]
         };
       }
-      componentWillMount(){
+      async componentWillMount(){
+        let data = await http.get("/all2")
+        
         this.setState({
-          title:this.props.match.params.title
+          title:this.props.match.params.title,
+          data
         })
         
       }
@@ -22,6 +26,8 @@ export default class list2 extends Component {
         history.push('/list')
       }
       render() {
+        const {data} = this.state
+        console.log(data);
         return (
           <div>
             <header className="page-head">
@@ -46,42 +52,33 @@ export default class list2 extends Component {
             <Tabs defaultActiveKey="1"tabBarGutter={20} tabBarStyle={{marginLeft:20}}>
               <TabPane tab="全部" key="1">
                 <ul className="item-tr" style={{background:"#fff"}}>
-                          {/* {
-                              data.map((item,index)=>{ */}
-                                <li className="item-list">
-                                      <figure className="img-outer">
-                                          <i className="type">自由行</i>
-                                          <i className="tag">上海</i>
-                                          <img src="http://media.china-sss.com/pics/gallery/201702/144ff0d5-5332-45e6-bcea-9b33ac27485e_201702231256_500_350.jpg"/>
-                                      </figure>
-                                      <div id="txt-outer">
-                                          <h2>【多重礼遇花样游】长白山4日3晚自由行●宿万达智选假日酒店（高级房+趣味骑行+西坡巴士+限时水乐园+延迟退房+接送机）</h2>
-                                          <ul className="money">
-                                          <p className="label">
-                                            <i style={{backgroundColor:"#00be88"}}>春秋假期 </i>
-                                            <span >假日度假 </span>
-                                          </p>
-                                          <p className="margintb">班期："6月", "7月", "8月", "9月", "10月"</p>
-                                          <li className="crred">¥<em>1174</em>起</li> 
-                                          </ul>
-                                      </div>
-                                  </li>
-                                  <li className="item-list">
-                                      <figure className="img-outer">
-                                          <i className="type">自由行</i>
-                                          <i className="tag">上海</i>
-                                          <img src="http://media.china-sss.com/pics/gallery/201702/144ff0d5-5332-45e6-bcea-9b33ac27485e_201702231256_500_350.jpg"/>
-                                      </figure>
-                                      <div id="txt-outer">
-                                          <h2>【多重礼遇花样游】长白山4日3晚自由行●宿万达智选假日酒店（高级房+趣味骑行+西坡巴士+限时水乐园+延迟退房+接送机）</h2>
-                                          <ul className="money">
-                                          <p>班期："6月", "7月", "8月", "9月", "10月"</p>
-                                          <li className="crred">¥<em>1174</em>起</li> 
-                                          </ul>
-                                      </div>
-                                  </li>
-                              {/* })
-                          } */}
+                           {
+                              data.map((item,index)=>{ 
+                                return <li className="item-list" key={index}>
+                                        <figure className="img-outer">
+                                            <i className="type">{item.attributeName}</i>
+                                            {/* eval把字符串转换成数组 */}
+                                            <i className="tag">{eval(item.departureCitys)[0] + item.cityType}</i>
+                                            <img src={item.picture}/>
+                                        </figure>
+                                        <div id="txt-outer">
+                                            <h2>{item.name}</h2>
+                                            <ul className="money">
+                                            <p className="label">
+                                              <i style={{backgroundColor:"#00be88"}}>{item.brandName} </i>
+                                              {
+                                                JSON.parse(item.productThemes).map((ele,idx)=>{
+                                                  return <span key={idx}>  {ele} </span>
+                                                })
+                                              } 
+                                            </p>
+                                            <p className="margintb">班期：{JSON.parse(item.schedule).months.join(",")}</p>
+                                            <li className="crred">¥<em>{JSON.parse(item.schedule).minPrice}</em>起</li> 
+                                            </ul>
+                                        </div>
+                                    </li>
+                               })
+                          }
                     </ul>
               </TabPane>
               <TabPane tab="自由行" key="2">
