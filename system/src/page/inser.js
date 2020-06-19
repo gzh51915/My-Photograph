@@ -2,35 +2,41 @@ import React, { Component } from 'react'
 import { Button, Form, Input, InputNumber } from "antd"
 import "../page/insert.css"
 import { Link } from "react-router-dom"
-
+import {resUpdate,resCreate} from "../api/index"
 
 export default class reg extends Component {
-    handlereg = () => {
-        // console.log(this.props)
-        const username = this.refs.username.props.value;
-        const password = this.refs.password.props.value;
-        const age = this.refs.age.props.value;
-        const adress = this.refs.adress.props.value;
-        console.log(username, password, age, adress)
-        if (!username) {
-            alert("请输入用户名")
-        } else if (!password) {
-            alert("请输入密码")
-        } else if (!age) {
-            alert("请输入年龄")
-        } else if (!adress) {
-            alert("请输入地址")
-        } else {
-            const update = async () => {
-                // const id = props._id
-                // data = await resUpdate(id)
-            }
-        }
-    }
+
+
+     handlereg = async (props) => {
+                console.log(this.props)
+                var username = this.refs.username.props.value;
+                const password = this.refs.password.props.value;
+                const age = this.refs.age.props.value * 1;
+                const address = this.refs.adress.props.value;
+        //         console.log(username, password, age, address)
+
+                if (!username) {
+                    alert("请输入正确的用户名")
+                } else if (!password) {
+                    alert("请输入正确的密码")
+                } else if (!age) {
+                    alert("请输入正确的年龄")
+                } else if (!address) {
+                    alert("请输入正确的地址")
+                } else {
+
+                    if (props._id) {
+                        await resUpdate(age,address)
+                    } else {
+                        await resCreate( username,password, age, address)
+                        console.log(this.props);
+                    }
+                }
+            }
     render() {
-        console.log(this.props, 9999999999999)
+
         const { username, password, _id, address } = this.props.location.state.props || "";
-        console.log(username, password, _id, address)
+        // console.log(username, password, _id, address)
         return (
             <div className="insert">
                 <div className="head">

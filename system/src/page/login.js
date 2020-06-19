@@ -31,14 +31,14 @@ export default class login extends Component {
         console.log(user,22222222222)
         message.success("登录成功")
         console.log(this.props);
-        
-        this.props.history.replace("/user")
+
+        this.props.history.push("/user")
         sessionStorage.setItem("user_msg", JSON.stringify(user))
       } else {
         message.error(result.msg)
       }
-      // console.log(username,password)
-      console.log("result", result)
+
+      // console.log("result", result)
     } else {
       alert("没登录")
     }
@@ -49,13 +49,11 @@ export default class login extends Component {
       username
     })
   }
-  changePassword = () => {
 
-  }
 
   render() {
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
-    console.log("user=*******",user)
+    // console.log("user=*******",user)
     if (user !== null && user.data.id) {
       return <Redirect to="/user" />
     }

@@ -72,6 +72,9 @@ exports.update = (colName,query,data)=>{
 
         let {db,client} = await connect();
 
+        if(query._id){
+            query._id = ObjectId(query._id);
+        }
         // 获取集合
         let col = db.collection(colName);
 

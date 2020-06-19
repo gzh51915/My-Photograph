@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^7.2.1",
     "antd": "^4.3.3",
     "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
     "express-session": "^1.17.1",
     "mongodb": "^3.5.9",
     "qs": "^6.9.4",

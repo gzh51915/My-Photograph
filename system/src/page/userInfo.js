@@ -1,5 +1,5 @@
 import React from "react";
-import { Table, Button, Pagination } from "antd";
+import { Table, Button, Pagination, Popconfirm } from "antd";
 import http from "./http";
 import { Redirect, Link } from "react-router-dom";
 import { resRemove, Allremove, resUpdate } from "../api";
@@ -9,7 +9,10 @@ class UserInfo extends React.Component {
 
   constructor() {
     super();
-    this.remove = this.remove.bind(this)
+
+    this.remove = this.remove.bind(this);
+    this.removeAll = this.removeAll.bind(this)
+
     this.state = {
       selectedRowKeys: [], // Check here to configure the default column
       loading: false,
@@ -24,6 +27,10 @@ class UserInfo extends React.Component {
           dataIndex: "password",
         },
         {
+          title: "Age",
+          dataIndex: "age",
+        },
+        {
           title: "Address",
           dataIndex: "address",
         },
@@ -32,19 +39,14 @@ class UserInfo extends React.Component {
           dataIndex: '',
 
           render: (props) => {
-            // const id = props._id
-            // const remove = async () => {
-            //   // await resRemove(id)
 
-            // }
-            // const update = async () => {
-            //   const id = props._id
-            //   // data = await resUpdate(id)
-            // }
             return (
               <div>
                 <Button size="small" ><Link to={{ pathname: "/inser", state: { props } }} >编辑</Link></Button>
-                <Button size="small" danger onClick={this.remove.bind(this, props._id)}>删除</Button>
+                <Popconfirm title="确定删除吗?" cancelText="取消" okText="确认" okType="danger" onConfirm={()=>{this.remove( props._id)}}>
+                   <Button size="small" danger >删除</Button>
+                </Popconfirm>
+
               </div>
             )
           }
@@ -54,18 +56,23 @@ class UserInfo extends React.Component {
   }
   remove = async (id) => {
     const {data} = this.state
-    // let res = await resRemove(id)
+    let res = await resRemove(id)
     console.log(id);
-    
+
     if(1){
       this.setState({
         data:data.filter(item=>item._id!==id)
       })
     }
-    console.log(this.state.data);
-    
   }
+  removeAll = async () => {
+      // console.log(this.props)
+  // await Allremove();
 
+    this.setState({
+      data:[]
+    })
+  };
   start = () => {
     this.setState({ loading: true });
     // ajax request after empty completing
@@ -94,19 +101,14 @@ class UserInfo extends React.Component {
     });
   }
 
-  removeAll = async () => {
-    // console.log(this.props)
-    const find = await Allremove();
-    console.log("find", find);
-  };
-
   render() {
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
     if (!user) {
+
       return <Redirect to="/login" />;
     }
+
     const { data, pagination, loading, selectedRowKeys } = this.state;
-    console.log(data);
 
     const rowSelection = {
       selectedRowKeys,
@@ -115,19 +117,22 @@ class UserInfo extends React.Component {
 
     const hasSelected = selectedRowKeys.length > 0;
 
+
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
-          <Button
+          {/* <Button
             type="primary"
             onClick={this.start}
             disabled={!hasSelected}
             loading={loading}
           >
             重置
-          </Button>
+          </Button> */}
+          <Button type="primary" danger onClick={this.removeAll.bind(this)}>全删</Button>
+
           <Button type="primary" style={{ float: "right" }}>
-            <Link to={{ pathname: "/inser", state: { username: "", password: "", _id: "", address: "" } }} >增加</Link>
+            <Link to={{ pathname: "/inser", state: { username: "", password: "", _id: "", address: "" } }} >添加</Link>
           </Button>
           <span style={{ marginLeft: 8 }}>
             {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
@@ -137,11 +142,11 @@ class UserInfo extends React.Component {
         <Table
           rowKey="_id"
           pagination={pagination}
-          rowSelection={rowSelection}
+          // rowSelection={rowSelection}
           columns={this.state.columns}
           dataSource={data}
         />
-        <Button onClick={this.removeAll}>全删</Button>
+
       </div>
     );
   }
