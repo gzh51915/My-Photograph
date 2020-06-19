@@ -134,4 +134,21 @@ Router.patch("/update/:id", async (req, res) => {
   }
 });
 
+Router.patch('/update/:id', async (req, res) => {
+  let { id } = req.params;
+  let { qty } = req.body;
+  let result = await db.Update('cart', {
+    gid: gid
+  }, {
+    qty
+  });
+
+  if (result.modifiedCount > 0) {
+    res.send(formatData())
+  } else {
+    res.send(formatData({
+      status: 0
+    }))
+  }
+})
 module.exports = Router;

@@ -103,8 +103,9 @@ class UserInfo extends React.Component {
 
   render() {
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
-    if (!user) {
-
+    if (user) {
+      // console.log(this.props);
+      // this.props.history.push("/login")
       return <Redirect to="/login" />;
     }
 

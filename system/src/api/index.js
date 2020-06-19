@@ -14,6 +14,21 @@ export const resRemove = (id) =>
     data: "删除成功",
   });
 
+
+export const resUpdate =(id,age,address)=> axios({
+    method: "PATCH",
+    url: "/goods/update/"+id,
+    data:{
+        age,address
+    }
+})
+
+export const resCreate =(username,password,age,address)=> axios({
+    method: "POST",
+    url: "/goods/add",
+    data: {username,password,age,address}
+})
+
 export const Allremove = () =>
   axios({
     method: "DELETE",
@@ -21,16 +36,5 @@ export const Allremove = () =>
     data: "删除成功",
   });
 
-export const resUpdate = (id,age,address) =>
-  axios({
-    method: "PATCH",
-    url: "/goods/update/" + id,
-    data: {age,address},
-  });
 
-export const resCreate = (username, password, age, address) =>
-  axios({
-    method: "POST",
-    url: "/goods/add",
-    data: { username, password, age, address },
-  });
+

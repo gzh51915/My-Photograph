@@ -57,7 +57,7 @@ function App() {
           </Sider>
           <Content style={{ padding: "0 24px", minHeight: 280 }}>
             <Switch>
-              
+
               <Route path="/login" component={Login}></Route>
               <Route path="/user" component={UserInfo}></Route>
               {/* <Route path='/increase' component={Increase}></Route> */}
