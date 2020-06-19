@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import '../node_modules/antd/dist/antd.css';
-import Login from './page/login';
+import Login from './page/login/login';
 import UserInfo from './page/userInfo';
-import Inser from './page/inser'
+import Inser from './page/inser/inser'
 import NotFount from './page/notFount'
 
 import { Route, Link, NavLink, Router, Switch, Redirect, useHistory } from 'react-router-dom';
@@ -14,6 +14,7 @@ const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
+  // 退出登录
   let history = useHistory();
   const exit = () => {
     sessionStorage.clear()
@@ -40,8 +41,8 @@ function App() {
                   <NavLink to="/user" activeStyle={{ color: '#f00' }}>用户资料</NavLink>
                 </Menu.Item>
               </SubMenu>
+              
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="用户管理">
-
                 <Menu.Item key="5">
                   <NavLink to="/login" activeStyle={{ color: '#f00' }}>用户登录</NavLink>
                 </Menu.Item>

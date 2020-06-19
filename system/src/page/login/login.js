@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Redirect } from "react-router-dom"
 import "./login.css"
 import 'antd/dist/antd.css';
-import { resLogin } from "../api"
+import { resLogin } from "../../api"
 import { Button, Form, Input, message } from "antd"
 
 
@@ -49,7 +49,6 @@ export default class login extends Component {
     }
     return (
       <div className="login">
-
         <h2>登录页面</h2>
         <Form onFinish={this.onFinish}>
           <Form.Item

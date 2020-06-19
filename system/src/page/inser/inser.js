@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Button, Form, Input, InputNumber } from "antd"
-import "../page/insert.css"
+import "./insert.css"
 import { Link } from "react-router-dom"
-import { resUpdate, resCreate } from '../api'
+import { resUpdate, resCreate } from '../../api'
 import { IdcardFilled } from '@ant-design/icons'
 
 
