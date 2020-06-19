@@ -7,18 +7,13 @@ import { Button, Form, Input, message } from "antd"
 
 
 export default class login extends Component {
-  // formRef = React.createRef();
   constructor() {
     super();
     this.state = {
       username: "",
       password: ""
     }
-
   }
-  onFinish = values => {
-    alert("欢迎" + values.username);
-  };
 
   //登录
   handlesubmit = async (e) => {
@@ -28,17 +23,13 @@ export default class login extends Component {
       const result = await resLogin(username, password)
       if (result.code === 200) {
         const user = result;
-        console.log(user,22222222222)
         message.success("登录成功")
-        console.log(this.props);
         
         this.props.history.replace("/user")
         sessionStorage.setItem("user_msg", JSON.stringify(user))
       } else {
-        message.error(result.msg)
+        message.error("请输入正确的用户名或密码")
       }
-      // console.log(username,password)
-      console.log("result", result)
     } else {
       alert("没登录")
     }
@@ -48,9 +39,6 @@ export default class login extends Component {
     this.setState({
       username
     })
-  }
-  changePassword = () => {
-
   }
 
   render() {
@@ -93,9 +81,7 @@ export default class login extends Component {
           </Form.Item>
 
           <Form.Item>
-            <Button type="primary" className="checkIn" htmlType="submit" onClick={this.handlesubmit}>
-              登录
-                        </Button>
+            <Button type="primary" className="checkIn" htmlType="submit" onClick={this.handlesubmit}>登录 </Button>
           </Form.Item>
         </Form>
       </div>

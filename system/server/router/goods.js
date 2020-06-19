@@ -8,7 +8,7 @@ const db = require("../db");
 // 查询所有商品 /goods/
 Router.get("/", async (req, res) => {
   // console.log("勇气")
-  const { page = 1, size = 10, sort = { add_time: -1 } } = req.query;
+  const { page = 1, size = 30, sort = { add_time: -1 } } = req.query;
   const limit = size * 1;
   const skip = (page - 1) * size;
 
@@ -45,7 +45,7 @@ Router.get("/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
   const result = await db.find("usersinfo", { _id: id });
-  console.log(666666666666,result);
+  console.log(666666666666, result);
   if (result.length > 0) {
     res.send({
       code: 1,
@@ -84,27 +84,44 @@ Router.get("/:id", async (req, res) => {
 // })
 function formatData({ status = 1, data = [], msg = 'success' } = {}) {
   if (status === 0) {
-      msg = 'fail'
+    msg = 'fail'
   }
   return {
-      status,
-      data,
-      msg
+    status,
+    data,
+    msg
   }
 }
 
-Router.delete('/:id', async(req, res) => {
+Router.delete('/:id', async (req, res) => {
   let { id } = req.params;
   // 查询数据库
   let result = await db.delete('usersinfo', { _id: id });
   // console.log('~~~~~~~~~~~~~~',result);
   if (result.deletedCount > 0) {
-      res.send(formatData())
+    res.send(formatData())
   } else {
-      res.send(formatData({
-          status: 0
-      }))
+    res.send(formatData({
+      status: 0
+    }))
   }
 })
 
+Router.patch('/update/:id', async (req, res) => {
+  let { id } = req.params;
+  let { qty } = req.body;
+  let result = await db.Update('cart', {
+    gid: gid
+  }, {
+    qty
+  });
+
+  if (result.modifiedCount > 0) {
+    res.send(formatData())
+  } else {
+    res.send(formatData({
+      status: 0
+    }))
+  }
+})
 module.exports = Router;

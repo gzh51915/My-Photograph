@@ -1,7 +1,9 @@
+
 const express = require('express') // commonJS
 // const routers = require('./router')
 const routers = require('./router')
 
+const bodyParser = require("body-parser")
 // 启动一个服务器
 const app = express()
 
