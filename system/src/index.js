@@ -5,15 +5,17 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { HashRouter, BrowserRouter } from "react-router-dom"
 
-const Router = process.env.NODE_ENV==="development"?HashRouter:BrowserRouter
+const Router = process.env.NODE_ENV === "development" ? HashRouter : BrowserRouter
 
 ReactDOM.render(
   // <React.StrictMode>
     <Router>
+      
       <App />
     </Router>
-  // </React.StrictMode>,
+  /* </React.StrictMode> */
   ,
+
   document.getElementById('root')
 );
 
