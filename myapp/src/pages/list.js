@@ -62,7 +62,7 @@ export default class list extends Component {
                                             <span>{ele.title}</span>
                                             {ele.subtitle}
                                         </h3>
-                                        <img src={ele.imgurl}/>
+                                        <img src={ele.imgurl} alt=""/>
                                     </li>
                                 })
                             }

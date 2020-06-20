@@ -35,7 +35,7 @@ export default function Demo({data,data2}) {
                 <TabPane tab="省心国内" key="2">
                 <ul className="item-tr">
                         <a className="advertising">
-                            <img src="//media.china-sss.com/img/M00/05/65/wKjFbF3TSseAF0oQAAFAV9Togyk429.jpg"/>
+                            <img src="//media.china-sss.com/img/M00/05/65/wKjFbF3TSseAF0oQAAFAV9Togyk429.jpg" alt=""/>
                         </a>
                         {
                             data2.map((item,index)=>{
