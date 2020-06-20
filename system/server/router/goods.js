@@ -2,7 +2,7 @@ const express = require("express");
 
 // 使用express中间件Router来实现server与router的连接
 const Router = express.Router();
-
+// const bodyParser = require("body-parser");
 const db = require("../db");
 
 // 查询所有商品 /goods/
@@ -29,15 +29,29 @@ Router.get("/", async (req, res) => {
       msg: "fail",
     };
   }
-  console.log(data);
-  // 请求<->响应
-  // console.log(result)
   res.send(data);
 });
 
-Router.post("/", (req, res) => {
-  //增
-  // db.create('goods')
+//添加数据
+Router.post("/add", async (req, res) => {
+  let { username, password, age, address } = req.body;
+
+  let result = await db.insert("usersinfo", {
+    username,
+    password,
+    age,
+    address,
+  });
+
+  if (result.insertedCount > 0) {
+    res.send(formatData({ status: 1 }));
+  } else {
+    res.send(
+      formatData({
+        status: 0,
+      })
+    );
+  }
 });
 
 // 查询id为某个值的商品
@@ -45,7 +59,7 @@ Router.get("/:id", async (req, res) => {
   const { id } = req.params;
   console.log(id);
   const result = await db.find("usersinfo", { _id: id });
-  console.log(666666666666, result);
+  // console.log(666666666666,result);
   if (result.length > 0) {
     res.send({
       code: 1,
@@ -61,51 +75,64 @@ Router.get("/:id", async (req, res) => {
   }
 });
 
-// 3.拦截前端提交数据的POST请求
-// Router.delete("/:id",async function(req, res){
-
-//     const {id} = req.params;
-
-//         // 查询数据库，根据id删除数据
-//     const result =await  db.delete('/usersinfo',{ _id: id})
-//     console.log(result);
-
-// })
-
-
-
-// Router.delete("/:id",async function(req, res){
-//     var id = req.params.id;
-//     console.log(666,id);
-//     // 查询数据库，根据id删除数据
-//     const  result = await db.delete("usersinfo",{_id:id})
-//     console.log('9999=',result);
-//     res.send(result.result.n)
-// })
-function formatData({ status = 1, data = [], msg = 'success' } = {}) {
+// 删除一个或多个数据
+function formatData({ status = 1, data = [], msg = "success" } = {}) {
   if (status === 0) {
-    msg = 'fail'
+    msg = "fail";
   }
   return {
     status,
     data,
-    msg
-  }
+    msg,
+  };
 }
 
-Router.delete('/:id', async (req, res) => {
+//删除全部数据
+Router.delete("/del", async (req, res) => {
+  // 查询数据库
+  await db.delete("usersinfo", {});
+
+  res.send("success");
+});
+// 删除一个或多个
+Router.delete("/:id", async (req, res) => {
   let { id } = req.params;
   // 查询数据库
-  let result = await db.delete('usersinfo', { _id: id });
+  let result = await db.delete("usersinfo", { _id: id });
   // console.log('~~~~~~~~~~~~~~',result);
   if (result.deletedCount > 0) {
-    res.send(formatData())
+    res.send(formatData());
   } else {
-    res.send(formatData({
-      status: 0
-    }))
+    res.send(
+      formatData({
+        status: 0,
+      })
+    );
   }
-})
+});
+
+Router.patch("/update/:id", async (req, res) => {
+  let { id } = req.params;
+  let { age, address } = req.body;
+  console.log(age,address);
+  let result = await db.update(
+    "usersinfo",
+    { _id:id },
+    {  age, address }
+  );
+
+  if (result.modifiedCount > 0) {
+    console.log('666666666===',formatData());
+    res.send(formatData());
+
+  } else {
+    res.send(
+      formatData({
+        status: 0,
+      })
+    );
+  }
+});
 
 Router.patch('/update/:id', async (req, res) => {
   let { id } = req.params;

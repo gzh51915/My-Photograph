@@ -30,7 +30,7 @@ function App(props) {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/list" component={List} />
-        <Route path="/list2/:title" component={List2} />
+        <Route path="/list2" component={List2} />
         <Route path="/reg" component={Reg} />
         <Route path="/login" component={Login} />
         <Route path="/find" component={Find}/>

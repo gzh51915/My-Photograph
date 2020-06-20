@@ -6,6 +6,7 @@ export default function Demo({data,data2}) {
     function callback(key) {
         console.log(key);
     }
+    console.log(data);
     return (
         
         <div className="demo">

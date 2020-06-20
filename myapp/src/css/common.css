@@ -27,37 +27,6 @@ h1, h2, h4, h5, h6, h3, b, strong {
   font-weight: normal;
 }
 
-.ant-tabs-nav {
-  margin-bottom: 0 !important;
-}
-
-.label {
-  margin: 0 !important;
-}
-
-.label i {
-  color: #fff;
-  border-color: transparent;
-}
-
-.label span {
-  display: inline-block;
-  vertical-align: top;
-  line-height: 2.66667vw;
-  padding: 0 0.8vw;
-  border: 1px solid #00be88;
-  border-radius: .08rem;
-  margin-left: 1.33333vw;
-  margin-right: 1.33333vw;
-  margin-bottom: 1.2vw;
-  font-size: 2.66667vw;
-  color: #00be88;
-}
-
-.margintb {
-  margin: 0 !important;
-}
-
 footer {
   position: fixed;
   z-index: 10;

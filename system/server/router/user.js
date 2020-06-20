@@ -2,15 +2,13 @@
 const express = require('express');
 const Router = express.Router(); // function(){}
 
-
 const db = require('../db')
 // const token = require('../utils/token')
-
-
 // 获取所有用户
 Router.get('/', (req, res) => {
     res.send('所有用户')
 })
+
 
 
 
@@ -43,8 +41,6 @@ Router.post('/', async (req, res) => {
             code: 401
         })
     }
-
-
 })
 
 // 登录

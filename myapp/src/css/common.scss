@@ -21,35 +21,7 @@ u,em,i{
     font-style: normal;
 }
 h1,h2,h4,h5,h6,h3,b,strong{font-weight: normal;}
-.ant-tabs-nav{
-    margin-bottom: 0 !important;
-}
-// #rc-tabs-0-panel-1{
-//     padding-top: 0 !important;
-// }
-.label{
-    margin: 0 !important;
-    i{
-        color: #fff;
-        border-color: transparent;
-    }
-    span{
-        display: inline-block;
-        vertical-align: top;
-        line-height: vw(20);
-        padding: 0 vw(6);
-        border: 1px solid #00be88;
-        border-radius: .08rem;
-        margin-left: vw(10);
-        margin-right: vw(10);
-        margin-bottom: vw(9);
-        font-size: vw(20);
-        color: #00be88;
-    }
-}
-.margintb{
-    margin: 0 !important;
-}
+
 footer {
     position: fixed;
     z-index: 10;
