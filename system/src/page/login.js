@@ -30,8 +30,6 @@ export default class login extends Component {
       } else {
         message.error("请输入正确的用户名或密码")
       }
-
-     
     } else {
       alert("没登录")
     }
@@ -44,14 +42,16 @@ export default class login extends Component {
   }
 
   render() {
+
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
-    // console.log("user=*******",user)
+    console.log("user=*******",user)
+
     if (user !== null && user.data.id) {
-      return <Redirect to="/user" />
+      //  return <Redirect to="/user" />
+       this.props.history.replace("/user")
     }
     return (
       <div className="login">
-
         <h2>登录页面</h2>
         <Form onFinish={this.onFinish}>
           <Form.Item

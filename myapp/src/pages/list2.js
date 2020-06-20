@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
-import {Tabs,Radio} from 'antd'
-
+import {ArrowLeftOutlined} from '@ant-design/icons'
+import {Input,Select,Tabs } from 'antd'
+import http from '../utils/http'
+const { Option } = Select;
 const { TabPane } = Tabs;
-
 export default class list2 extends Component {
     constructor(props) {
         super(props);
         this.state = {
-          mode: 'left',
+          title:"",
+          data:[]
         };
       }
       async componentWillMount(){
@@ -28,7 +30,8 @@ export default class list2 extends Component {
         history.push('/list')
       }
       render() {
-        const { mode } = this.state;
+        const {data} = this.state
+        console.log(data);
         return (
           <div>
             <header className="page-head">
@@ -55,14 +58,12 @@ export default class list2 extends Component {
                 <ul className="item-tr" style={{background:"#fff"}}>
                            {
                               data.map((item,index)=>{ 
-                                return <li className="item-list" key={index} onClick={()=>{
-                                  this.goto(item.bussinessProductId)
-                                }}>
+                                return <li className="item-list" key={index}>
                                         <figure className="img-outer">
                                             <i className="type">{item.attributeName}</i>
                                             {/* eval把字符串转换成数组 */}
                                             <i className="tag">{eval(item.departureCitys)[0] + item.cityType}</i>
-                                            <img src={item.picture} alt=""/>
+                                            <img src={item.picture}/>
                                         </figure>
                                         <div id="txt-outer">
                                             <h2>{item.name}</h2>
@@ -108,6 +109,7 @@ export default class list2 extends Component {
                 </TabPane>
               ))}
             </Tabs>
+            
           </div>
         );
       }

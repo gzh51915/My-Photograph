@@ -1,31 +1,36 @@
-import React from "react";
-
-import "./App.css";
-import "../node_modules/antd/dist/antd.css";
-import Login from "./page/login";
-import UserInfo from "./page/userInfo";
-// import Increase from './page/increase'
-import Inser from "./page/inser";
+import React from 'react';
+import './App.css';
+import '../node_modules/antd/dist/antd.css';
+import Login from './page/login/login';
+import UserInfo from './page/userInfo';
+import Inser from './page/inser/inser'
+import NotFount from './page/notFount'
 
 import {
   Route,
-  Link,
   NavLink,
-  Router,
   Switch,
   Redirect,
+  useHistory
 } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout, Menu, Button } from "antd";
 import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
+  // 退出登录
+  let history = useHistory();
+  const exit = () => {
+    sessionStorage.clear()
+    history.replace("/login")
+  }
   return (
     <Layout>
       <Header className="header" style={{ backgroundColor: "#fff" }}>
-        <h1 style={{ color: " #A4D3EE" }}>后台管理系统</h1>
+        <h1 style={{ color: " #A4D3EE",width:600,float:"left" }}>后台管理系统</h1>
+        <Button onClick={exit} style={{ float: "right", margin: 20 }}>退出</Button>
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <Layout
@@ -46,6 +51,7 @@ function App() {
                   </NavLink>
                 </Menu.Item>
               </SubMenu>
+
               <SubMenu key="sub2" icon={<LaptopOutlined />} title="用户管理">
                 <Menu.Item key="5">
                   <NavLink to="/login" activeStyle={{ color: "#f00" }}>
@@ -62,8 +68,10 @@ function App() {
               <Route path="/user" component={UserInfo}></Route>
               {/* <Route path='/increase' component={Increase}></Route> */}
               <Route path="/inser" component={Inser}></Route>
+              <Route path="/notFount" component={NotFount}></Route>
 
               <Redirect from="/" to="/login" exact></Redirect>
+              <Redirect to="/notFount"></Redirect>
 
             </Switch>
           </Content>

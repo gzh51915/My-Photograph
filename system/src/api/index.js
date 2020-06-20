@@ -15,18 +15,18 @@ export const resRemove = (id) =>
   });
 
 
-export const resUpdate =(id,age,address)=> axios({
+export const resUpdate =(id,title, price,respricce)=> axios({
     method: "PATCH",
     url: "/goods/update/"+id,
     data:{
-        age,address
+      title, price,respricce
     }
 })
 
-export const resCreate =(username,password,age,address)=> axios({
+export const resCreate =(title, price,respricce)=> axios({
     method: "POST",
     url: "/goods/add",
-    data: {username,password,age,address}
+    data: {title, price,respricce}
 })
 
 export const Allremove = () =>
