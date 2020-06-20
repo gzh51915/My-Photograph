@@ -4,9 +4,8 @@ import "./App.css";
 import "../node_modules/antd/dist/antd.css";
 import Login from "./page/login";
 import UserInfo from "./page/userInfo";
-// import Increase from './page/increase'
+import NotFound from './page/notFount'
 import Inser from "./page/inser";
-
 import {
   Route,
   Link,
@@ -14,18 +13,27 @@ import {
   Router,
   Switch,
   Redirect,
+  useHistory
 } from "react-router-dom";
-import { Layout, Menu } from "antd";
+import { Layout, Menu ,Button} from "antd";
 import { UserOutlined, LaptopOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
 const { Header, Footer, Sider, Content } = Layout;
 
 function App() {
+
+  let history = useHistory();
+  const exit = () => {
+    sessionStorage.clear()
+    history.replace("/login")
+  }
+
   return (
     <Layout>
       <Header className="header" style={{ backgroundColor: "#fff" }}>
-        <h1 style={{ color: " #A4D3EE" }}>后台管理系统</h1>
+        <h1 style={{ color: " #A4D3EE",width:600,float:"left" }}>后台管理系统</h1>
+        <Button onClick={exit} style={{ float: "right", margin: 20 }}>退出</Button>
       </Header>
       <Content style={{ padding: "0 50px" }}>
         <Layout
@@ -62,8 +70,9 @@ function App() {
               <Route path="/user" component={UserInfo}></Route>
               {/* <Route path='/increase' component={Increase}></Route> */}
               <Route path="/inser" component={Inser}></Route>
-
+              <Route path="/notfound" component={NotFound}></Route>
               <Redirect from="/" to="/login" exact></Redirect>
+              <Redirect to="/notfound"></Redirect>
 
             </Switch>
           </Content>

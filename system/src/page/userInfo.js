@@ -103,9 +103,7 @@ class UserInfo extends React.Component {
 
   render() {
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
-    if (user) {
-      // console.log(this.props);
-      // this.props.history.push("/login")
+    if (!user) {
       return <Redirect to="/login" />;
     }
 
@@ -122,14 +120,7 @@ class UserInfo extends React.Component {
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
-          {/* <Button
-            type="primary"
-            onClick={this.start}
-            disabled={!hasSelected}
-            loading={loading}
-          >
-            重置
-          </Button> */}
+
           <Button type="primary" danger onClick={this.removeAll.bind(this)}>全删</Button>
 
           <Button type="primary" style={{ float: "right" }}>
