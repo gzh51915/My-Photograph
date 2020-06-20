@@ -1,7 +1,8 @@
 import React ,{Component} from 'react'
-import {Carousel} from 'antd'
-import {ArrowLeftOutlined} from '@ant-design/icons'
+import {Carousel, Card} from 'antd'
+import {ArrowLeftOutlined,InfoCircleOutlined} from '@ant-design/icons'
 import http from '../utils/http'
+import '../css/detail.css'
 
 
 export default class detail extends Component {
@@ -9,7 +10,8 @@ export default class detail extends Component {
         super()
         this.state = {
             data:[],
-            title:""
+            title:"",
+            card:[]
         }
     }
     async componentDidMount(){
@@ -18,8 +20,10 @@ export default class detail extends Component {
         
         this.setState({
             data:data[0],
-            title:eval(data[0].destinationCity)[0]
+            title:eval(data[0].destinationCity)[0],
+            card:eval(data[0].productThemes)
         })
+        
     }
     back = ()=>{
         const {title} = this.state
@@ -27,7 +31,7 @@ export default class detail extends Component {
         history.push('/list2/' + title)
       }
     render() {
-        const {data,title} = this.state
+        const {data,card} = this.state
         console.log(data);
         
         return (
@@ -41,8 +45,29 @@ export default class detail extends Component {
                     <h1>详情页</h1>
                 </header>
                 <Carousel className="detail-banner">
-                    <div><img src={data.picture} width="100%" alt=""/></div>
+                    <div><img src={data.picture} width="100%" height="205px" alt=""/></div>
                 </Carousel>
+                <section className="detail-title">
+                    <div className="h2">
+                    【多重礼遇花样游】长白山4日3晚自由行●宿万达智选假日酒店（高级房+趣味骑行+西坡巴士+限时水乐园+延迟退房+接送机）
+                    </div>
+                    <div className="item-money">
+                    <span className="crred" id="price">
+                        ￥
+                        <em>1174</em>
+                        <label className="cr6">起/人</label></span>
+                        <InfoCircleOutlined style={{color:"#0080FF"}}/>
+                    </div>
+                    <div className="poster-outer">
+                        <div className="item-card">
+                            {
+                                card.map(item=>{
+                                return <span key={item}>{item}</span>
+                                })
+                            }
+                        </div>
+                    </div>
+                </section>
             </div>
         )
     }

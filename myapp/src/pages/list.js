@@ -36,31 +36,23 @@ export default class list extends Component {
                             <Input style={{ width: '79.6%' }} defaultValue="请输入你想要去的地方" prefix="" size="large"/>
                         </Input.Group>
                 </section>
-                {/* <Tabs tabPosition={this.state.tabPosition}>
-                    <TabPane tab="Tab 1" key="1">
-                        <ul className="ul-img">
-                            <li>
-                                <h3>
-                                    <span>长白山</span>
-                                    CHANGBAISHAN
-                                </h3>
-                                <img src="//media.china-sss.com/img/M00/04/2C/wKjFbVvHC2qAIE-9AAE_5dThUT0381.jpg"/>
-                            </li>
-                            <li>
-                                <h3>
-                                    <span>长白山</span>
-                                    CHANGBAISHAN
-                                </h3>
-                                <img src="//media.china-sss.com/img/M00/04/2C/wKjFbVvHC2qAIE-9AAE_5dThUT0381.jpg"/>
-                            </li>
-                            <li>
-                                <h3>
-                                    <span>长白山</span>
-                                    CHANGBAISHAN
-                                </h3>
-                                <img src="//media.china-sss.com/img/M00/04/2C/wKjFbVvHC2qAIE-9AAE_5dThUT0381.jpg"/>
-                            </li>
-                        </ul>
+                <Tabs defaultActiveKey="0" tabPosition={this.state.mode}>
+                
+                    {   data.map((item,index) => (
+                        <TabPane tab={item.title} key={item.title}>
+                        <ul className="ul-img" key={index}>
+                            {
+                                JSON.parse(item.data).map((ele,idx)=>{
+                                    return <li key={idx} onClick={this.goto.bind(this,ele.title)} >
+                                        <h3>
+                                            <span>{ele.title}</span>
+                                            {ele.subtitle}
+                                        </h3>
+                                        <img src={ele.imgurl} alt=""/>
+                                    </li>
+                                })
+                            }
+                            </ul>
                     </TabPane>
                     <TabPane tab="Tab 2" key="2">
                         Content of Tab 2
@@ -71,7 +63,7 @@ export default class list extends Component {
                     <TabPane tab="Tab 4" key="4">
                         Content of Tab 4
                     </TabPane>
-                </Tabs> */}
+                </Tabs>
                 <Tabs defaultActiveKey="0" tabPosition={this.state.mode}>
                     {data.map(i => (
                         <TabPane tab={`Tab-${i}`} key={i}>

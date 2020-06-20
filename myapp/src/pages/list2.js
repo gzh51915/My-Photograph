@@ -85,19 +85,19 @@ export default class list2 extends Component {
                     </ul>
               </TabPane>
               <TabPane tab="自由行" key="2">
-                Content of Tab Pane 2
+                暂无
               </TabPane>
               <TabPane tab="团队游" key="3">
-                Content of Tab Pane 3
+                暂无
               </TabPane>
               <TabPane tab="当地游" key="4">
-                Content of Tab Pane 4
+                暂无
               </TabPane>
               <TabPane tab="酒店套餐" key="5">
-                Content of Tab Pane 5
+                暂无
               </TabPane>
               <TabPane tab="门票" key="6">
-                Content of Tab Pane 6
+                暂无
               </TabPane>
             </Tabs>
             
