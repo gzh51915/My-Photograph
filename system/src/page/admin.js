@@ -7,7 +7,7 @@ import { Layout, Menu, Button } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 const { SubMenu } = Menu;
-const { Header, Footer, Sider, Content } = Layout;
+const { Header,  Sider, Content } = Layout;
 
 export default function Admin() {
     let history = useHistory();
