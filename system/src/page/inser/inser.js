@@ -31,19 +31,18 @@ export default class reg extends Component {
             } else {
                 await resUpdate(props._id, title, price, resprice)
             }
-            this.props.history.push("/user")
+            this.props.history.push("/admin/user")
         }
 
     }
 
     render() {
         const data = this.props.location.state.props
-        console.log(data, 5555555555)
         const { title, price, resprice,  _id } = data || "";
         return (
             <div className="insert">
                 <div className="head">
-                    <Button className="return"> <Link to={"/user"}>返回</Link></Button>
+                    <Button className="return"> <Link to={"/admin/user"}>返回</Link></Button>
                     <h2>增加或修改</h2>
                 </div>
                 <Form name="nest-messages" initialValues={{title, price, resprice,  _id }}>

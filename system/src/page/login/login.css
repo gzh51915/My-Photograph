@@ -1,12 +1,13 @@
 .login{
     width: 400px;
-    /* height: 300px; */
-    background: #fff;
+    background: #ccc;
     margin:150px auto;
+    /* opacity:0.5; */
     padding: 30px;
+    
 }
 h2{
-    margin: auto;
+    margin: 20px auto ;
     width: 100px;
 }
 .checkIn{

@@ -41,7 +41,7 @@ class UserInfo extends React.Component {
           render: (props) => {
             return (
               <div>
-                <Button size="small" ><Link to={{ pathname: "/inser", state: { props } }} >编辑</Link></Button>
+                <Button size="small" ><Link to={{ pathname: "/admin/inser", state: { props } }} >编辑</Link></Button>
                 <Popconfirm title="确定删除吗?" cancelText="取消" okText="确认" okType="danger" onConfirm={() => { this.remove(props._id) }}>
                   <Button size="small" danger >删除</Button>
                 </Popconfirm>
@@ -53,10 +53,10 @@ class UserInfo extends React.Component {
       ]
     }
   }
+  //删除单个商品
   remove = async (id) => {
     const { data } = this.state
     let res = await resRemove(id)
-    console.log(id);
 
     if (1) {
       this.setState({
@@ -64,12 +64,15 @@ class UserInfo extends React.Component {
       })
     }
   }
+
+  //删除所有商品
   removeAll = async () => {
     // await Allremove();
     this.setState({
       data: []
     })
   };
+
   start = () => {
     this.setState({ loading: true });
     // ajax request after empty completing
@@ -89,7 +92,6 @@ class UserInfo extends React.Component {
 
   async componentDidMount() {
     const { data } = await http.get("/goods");
-    // console.log(data);
     this.setState({
       data,
       pagination: {
@@ -99,11 +101,11 @@ class UserInfo extends React.Component {
   }
 
   render() {
+
+    // 判断是否登录
     const user = JSON.parse(sessionStorage.getItem("user_msg"))
     if (!user) {
-      // setTimeout(() => {
       return <Redirect to="/login" />;
-    // }, 300)
     }
     const { data, pagination, loading, selectedRowKeys } = this.state;
 
@@ -118,10 +120,14 @@ class UserInfo extends React.Component {
     return (
       <div>
         <div style={{ marginBottom: 16 }}>
-          <Button type="primary" danger onClick={this.removeAll.bind(this)}>全删</Button>
+        <Popconfirm title="确定删除吗?" cancelText="取消" okText="确认" okType="danger"
+        onConfirm={() => { this.removeAll() }}
+        >
+           <Button type="primary" danger >全删</Button>
 
+        </Popconfirm>
           <Button type="primary" style={{ float: "right" }}>
-            <Link to={{ pathname: "/inser", state: { username: "", password: "", _id: "", address: "" } }} >添加</Link>
+            <Link to={{ pathname: "/admin/inser", state: { username: "", password: "", _id: "", address: "" } }} >添加</Link>
           </Button>
           <span style={{ marginLeft: 8 }}>
             {hasSelected ? `Selected ${selectedRowKeys.length} items` : ""}
