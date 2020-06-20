@@ -6,7 +6,6 @@
   background: #fff;
   border-bottom: 1px solid #cccccc;
   text-align: left;
-  padding: 0 15px;
 }
 
 .page-head a {
@@ -88,6 +87,11 @@
   height: 100%;
 }
 
-.ant-tabs-content-left {
-  position: fixed;
+.ant-tabs {
+  margin-bottom: 13.33333vw !important;
+}
+
+.ant-tabs-tabpane {
+  padding-left: 10px !important;
+  padding-top: 10px !important;
 }

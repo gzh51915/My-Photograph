@@ -67,7 +67,7 @@ export default class home extends Component {
                                     <li>
                                         <figure className="img-outer">
                                             <i>当前狂欢</i>
-                                            <img src="http://media.china-sss.com/pics/gallery/202003/17f3d0b1-46b8-4a6c-bf0a-ec1a528045b8_202003121509_500_350.jpg"/>
+                                            <img src="http://media.china-sss.com/pics/gallery/202003/17f3d0b1-46b8-4a6c-bf0a-ec1a528045b8_202003121509_500_350.jpg" alt=""/>
                                         </figure>
                                         <div id="txt-outer">
                                             <h2>【单订 预售】惠州万科双月湾二期希腊风情洋房小别墅两房一厅自由行●宿1晚酒店</h2>
@@ -85,17 +85,17 @@ export default class home extends Component {
                                 <li>
                                     <h3>新人大礼包</h3>
                                     <p>666优惠券</p>
-                                    <img src="//media.china-sss.com/img/M00/00/0C/wKjFbVp4JcWAY0tsAAAgFUy47Eo190.png" /> 
+                                    <img src="//media.china-sss.com/img/M00/00/0C/wKjFbVp4JcWAY0tsAAAgFUy47Eo190.png" alt=""/> 
                                 </li>
                                 <li>
                                     <h3>锦绣和风</h3>
                                     <p></p>
-                                    <img src="//media.china-sss.com/img/M00/05/92/wKjFbF4S_lOAOrysAAC69I179m8445.png"/> 
+                                    <img src="//media.china-sss.com/img/M00/05/92/wKjFbF4S_lOAOrysAAC69I179m8445.png" alt=""/> 
                                 </li>
                                 <li>
                                     <h3>欧美非专场</h3>
                                     <p></p>
-                                    <img src="//media.china-sss.com/img/M00/05/2B/wKjFbF11sLCAYazJAABj3hGIiiI360.png" /> 
+                                    <img src="//media.china-sss.com/img/M00/05/2B/wKjFbF11sLCAYazJAABj3hGIiiI360.png" alt=""/> 
                                 </li>
                             </ul>
                         </section>

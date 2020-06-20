@@ -1,0 +1,40 @@
+@function vw($px) {
+    @return ($px / 750) *100vw;
+}
+.detail-title{
+    background-color: #fff;
+    padding: vw(24);
+    .h2{
+        font-weight: 700;
+        max-height: none;
+        color: #333;
+        font-size: vw(32);
+        margin-bottom: vw(9.2);
+        text-align: left;
+    }
+    .item-money{
+        text-align: left;
+        #price{
+            color: #f66;
+            em{
+                font-weight: 700;
+                font-size: vw(44);
+            }
+        }
+        .cr6{
+            color: #666;
+        }
+    }
+    .item-card{
+        text-align: left;
+        font-size: vw(24);
+        span{
+            display: inline-block;
+            border: 1px solid #bbb;
+            padding: vw(0.4) vw(9.2);
+            color: #666;
+            margin-bottom: vw(9.2);
+            margin-right: vw(10);
+        }
+    }
+}

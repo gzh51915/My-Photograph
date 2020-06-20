@@ -6,7 +6,6 @@ export default function Demo({data,data2}) {
     function callback(key) {
         console.log(key);
     }
-    console.log(data);
     return (
         
         <div className="demo">
@@ -19,7 +18,7 @@ export default function Demo({data,data2}) {
                                     <figure className="img-outer">
                                         <i className="type">{item.productTypeName}</i>
                                         <i className="tag">{item.cityName+item.cityType}</i>
-                                        <img src={item.imgurl}/>
+                                        <img src={item.imgurl} alt=""/>
                                     </figure>
                                     <div id="txt-outer">
                                         <h2>{item.productName}</h2>
@@ -36,7 +35,7 @@ export default function Demo({data,data2}) {
                 <TabPane tab="省心国内" key="2">
                 <ul className="item-tr">
                         <a className="advertising">
-                            <img src="//media.china-sss.com/img/M00/05/65/wKjFbF3TSseAF0oQAAFAV9Togyk429.jpg"/>
+                            <img src="//media.china-sss.com/img/M00/05/65/wKjFbF3TSseAF0oQAAFAV9Togyk429.jpg" alt=""/>
                         </a>
                         {
                             data2.map((item,index)=>{
@@ -44,7 +43,7 @@ export default function Demo({data,data2}) {
                                     <figure className="img-outer">
                                         <i className="type">{item.productTypeName}</i>
                                         <i className="tag">{item.cityName+item.cityType}</i>
-                                        <img src={item.imgurl}/>
+                                        <img src={item.imgurl} alt=""/>
                                     </figure>
                                     <div id="txt-outer">
                                         <h2>{item.productName}</h2>

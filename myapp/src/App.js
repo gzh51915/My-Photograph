@@ -8,9 +8,12 @@ import List2 from './pages/list2'
 import Reg from './pages/reg'
 import Login from './pages/login'
 import Find from './pages/find'
+import Mine from './pages/mine'
+import Detail from './pages/detail'
 import './css/common.css'
 import 'antd/dist/antd.css'
 function App(props) {
+  console.log(props);
   const goto = (path) =>{
     const {history} = props
     history.push(path)
@@ -18,7 +21,6 @@ function App(props) {
   }
   return (
     <div className="App">
-      
       <footer>
           <span><HomeOutlined style={{fontSize:20}} onClick={()=>goto('/home')}/>首页</span>
           <span><CarOutlined style={{fontSize:20}} onClick={()=>goto('/list')}/>目的地</span>
@@ -30,10 +32,12 @@ function App(props) {
       <Switch>
         <Route path="/home" component={Home} />
         <Route path="/list" component={List} />
-        <Route path="/list2" component={List2} />
+        <Route path="/list2/:title" component={List2} />
+        <Route path="/detail/:id" component={Detail} />
         <Route path="/reg" component={Reg} />
         <Route path="/login" component={Login} />
         <Route path="/find" component={Find}/>
+        <Route path="/mine" component={Mine}/>
         <Route path="/notfound" component={()=><div>404</div>} />
         <Redirect from="/" to="/home" exact />
       </Switch>
