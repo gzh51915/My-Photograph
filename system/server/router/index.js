@@ -6,7 +6,7 @@ const session = require('express-session');
 
 const goods = require('./goods'); // express.router()
 const user = require('./user');
-// const verifycode = require('./verifycode');
+const verifycode = require('./verifycode');
 
 // CORS
 Router.use((req, res, next) => {

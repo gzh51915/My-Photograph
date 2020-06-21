@@ -11,14 +11,13 @@ Router.get('/',(req,res)=>{
         noise:2,
         color:true,
     });
-    console.log(captcha.text);
+    // console.log(captcha.data);
 
     // 把验验证码保存在session中
     req.session.vcode = captcha.text.toLocaleLowerCase();
 
-    console.log('session=',req.session.vcode)
 
-    res.send(captcha.data);
+    res.send({data:captcha.data,text:captcha.text.toLocaleLowerCase()});
 })
 
 

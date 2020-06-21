@@ -5,15 +5,15 @@ import { resSvg, resReg } from "../../api"
 
 export default class Reg extends React.Component {
     state = {
-        data: <h1>222</h1>
+        data: ''
     }
     reg = async () => {
         const username = this.refs.username.props.value;
         const password = this.refs.password.props.value;
         const age = this.refs.age.props.value;
         const address = this.refs.address.props.value;
-        const vcode = this.refs.vcode.props.value;
-        console.log(username, password, age, address)
+        const vcode = this.refs.vcode.state.value;
+        // console.log(username, password, age, address, vcode)
 
         if (!username) {
             alert("请输入用户名")
@@ -27,27 +27,38 @@ export default class Reg extends React.Component {
             alert("请输入验证码")
         }
         else {
-            let result = await resReg(username, password, age, address, vcode)
-            if (result.code === 200) {
-                message.success("注册成功")
-                this.props.history.replace("/login")
+            if (window.localStorage.getItem("vcode") === vcode) {
+                let result = await resReg(username, password, age, address, vcode)
+                // console.log('6666666611111111==', result);
+                if (result.code === 200) {
+                    message.success("注册成功")
+                    this.props.history.replace("/login")
+                } else {
+                    message.error("验证码不正确")
+                }
             } else {
-                message.error("验证码不正确")
+                alert("请输入正确验证码")
             }
         }
     }
 
     svg = async () => {
-        let svg = await resSvg()
-        this.setState({
-            data: svg
-        })
+        let code = window.localStorage.getItem("vcode");
+        let svg = await resSvg();
+            this.setState({
+                data: svg.data
+            });
+            // console.log(svg)
+            window.localStorage.setItem("vcode", svg.text);
+            // console.log(window.localStorage.getItem("vcode"))
+
     }
     async componentDidMount() {
         let svg = await resSvg()
         this.setState({
-            data: svg
+            data: svg.data
         })
+        window.localStorage.setItem("vcode", svg.text);
 
     }
     render() {
@@ -91,6 +102,7 @@ export default class Reg extends React.Component {
                     </Form.Item>
 
                     验证码：<Input ref="vcode" style={{ width: 150, marginBottom: 20 }}></Input>
+
                     <span onClick={this.svg} className="svg" style={{ height: 40 }} dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
 
                     <Form.Item>
