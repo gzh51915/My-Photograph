@@ -12,7 +12,7 @@ export default class reg extends Component {
     }
 
     handlereg = async (props, e) => {
-       
+
         let title = this.refs.title.props.value;
         let price = this.refs.price.props.value;
         let resprice = this.refs.resprice.props.value;
@@ -26,6 +26,7 @@ export default class reg extends Component {
         } else if (!resprice) {
             alert("请输入原价")
         } else {
+            //判断是否有数据传入
             if (!props) {
                 await resCreate(title, price, resprice)
             } else {
@@ -38,16 +39,16 @@ export default class reg extends Component {
 
     render() {
         const data = this.props.location.state.props
-        const { title, price, resprice,  _id } = data || "";
+        const { title, price, resprice, _id } = data || "";
         return (
             <div className="insert">
                 <div className="head">
                     <Button className="return"> <Link to={"/admin/user"}>返回</Link></Button>
                     <h2>增加或修改</h2>
                 </div>
-                <Form name="nest-messages" initialValues={{title, price, resprice,  _id }}>
+                <Form name="nest-messages" initialValues={{ title, price, resprice, _id }}>
                     <Form.Item initialValue={title} name={['user', 'name']} label="商品名称：" >
-                        <Input ref="title"  className="username" />
+                        <Input ref="title" className="username" />
                     </Form.Item>
                     <Form.Item initialValue={price} name={['user', 'password']} label="原价：" >
                         <Input ref="price" />

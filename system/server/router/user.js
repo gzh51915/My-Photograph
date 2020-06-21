@@ -16,14 +16,11 @@ Router.get('/', (req, res) => {
 // 注册：添加一个用户
 Router.post('/', async (req, res) => {
     // 获取username,password
-    const { username, password, age,address } = req.body;
-    // console.log('vcode=', vcode, req.session.vcode);
-
-    // if (vcode.toLowerCase() === req.session.vcode) {
+    const { username, password, age, address } = req.body;
 
         // 写入数据库
         try {
-            await db.create('ttt', { username, password,age,address })
+            await db.insert('ttt', { username, password, age, address })
             console.log('user=', username, password)
             res.send({
                 code: 200
@@ -36,12 +33,11 @@ Router.post('/', async (req, res) => {
             })
         }
 
-        // delete req.session.vcode;
-    // } else {
-    //     res.send({
-    //         code: 401
-    //     })
-    // }
+        delete req.session.vcode;
+        console.log(401)
+        res.send({
+            code: 401
+        })
 })
 
 // 登录
@@ -58,15 +54,15 @@ Router.post('/login', async (req, res) => {
         res.send({
             code: 200,
             data: {
-               msg:'success',
-               id:result[0]._id,
-               username
+                msg: 'success',
+                id: result[0]._id,
+                username
             }
         })
     } else {
         res.send({
             code: 400,
-            msg:'fail'
+            msg: 'fail'
         })
     }
 })
@@ -88,7 +84,7 @@ Router.get('/verify', async (req, res) => {
 })
 
 // 获取某一个用户的信息
-Router.get('/:id',async (req, res) => {
+Router.get('/:id', async (req, res) => {
     // 获取id值
     // const id = req.query
     const { id } = req.params

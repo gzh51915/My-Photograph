@@ -5,17 +5,14 @@ import { resSvg, resReg } from "../../api"
 
 export default class Reg extends React.Component {
     state = {
-        data: <h1>222</h1>
+        data: ''
     }
     reg = async () => {
         const username = this.refs.username.props.value;
         const password = this.refs.password.props.value;
         const age = this.refs.age.props.value;
         const address = this.refs.address.props.value;
-        const vvv = this.refs.vvv.value;
-        // const vcode = this.refs.vcode.value;
-        console.log(username, password, age, address,vvv)
-        console.log(this.refs.vvv,99999999)
+        const vcode = this.refs.vcode.state.value;
 
         if (!username) {
             alert("请输入用户名")
@@ -25,34 +22,47 @@ export default class Reg extends React.Component {
             alert("请输入年龄")
         } else if (!address) {
             alert("请输入地址")
-        } else if (!vvv) {
+        } else if (!vcode) {
             alert("请输入验证码")
         }
         else {
-            let result = await resReg(username, password, age, address, vvv)
-            let vcode = sessionStorage.getItem("vcode")
-            if (vvv===vcode) {
-                message.success("注册成功")
-                this.props.history.replace("/login")
+            //校验验证码是否正确
+            let code = localStorage.getItem("vcode")
+            if (code === vcode) {
+                let result = await resReg(username, password, age, address, vcode)
+                if (result.code === 200) {
+                    message.success("注册成功")
+                    this.props.history.replace("/login")
+                } else {
+                    message.error("注册失败")
+                }
             } else {
-                message.error("验证码不正确")
+                //如果不正确就刷新验证码
+                message.error("请输入正确验证码")
+                let svg = await resSvg();
+                this.setState({
+                    data: svg.data
+                });
+                localStorage.setItem("vcode", svg.text);
             }
         }
     }
-
+    //点击刷新验证码
     svg = async () => {
-        let svg = await resSvg()
-        sessionStorage.setItem("vcode",svg.vcode)
+        let svg = await resSvg();
         this.setState({
             data: svg.data
-        })
+        });
+        localStorage.setItem("vcode", svg.text);
     }
+
+    //初始化验证码
     async componentDidMount() {
         let svg = await resSvg()
-        sessionStorage.setItem("vcode",svg.vcode)
         this.setState({
             data: svg.data
         })
+        localStorage.setItem("vcode", svg.text);
 
     }
     render() {
@@ -94,8 +104,9 @@ export default class Reg extends React.Component {
                     >
                         <Input ref="address" />
                     </Form.Item>
-{/* <input ref="vcode"></input> */}
-                    验证码：<input ref="vvv" style={{ width: 150, marginBottom: 20 }}></input>
+
+                    验证码：<Input ref="vcode" style={{ width: 150, marginBottom: 20 }}></Input>
+
                     <span onClick={this.svg} className="svg" style={{ height: 40 }} dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
 
                     <Form.Item>
