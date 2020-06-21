@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import "./login.css"
 import 'antd/dist/antd.css';
+import {Link} from "react-router-dom"
 import { resLogin } from "../../api"
 import { Button, Form, Input, message } from "antd"
 
@@ -47,6 +48,7 @@ export default class login extends Component {
     return (
       <div className="login">
         <h2>登录页面</h2>
+       
         <Form>
           <Form.Item
             label="用户名："
@@ -79,6 +81,7 @@ export default class login extends Component {
           <Form.Item>
             <Button type="primary" className="checkIn" htmlType="submit" onClick={this.handlesubmit}>登录 </Button>
           </Form.Item>
+          <span><Link to="/reg">还没有账号？去注册</Link></span>
         </Form>
       </div>
     )

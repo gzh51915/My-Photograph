@@ -15,14 +15,14 @@ Router.get('/', (req, res) => {
 // 注册：添加一个用户
 Router.post('/', async (req, res) => {
     // 获取username,password
-    const { username, password, vcode } = req.body;
-    console.log('vcode=', vcode, req.session.vcode);
+    const { username, password, age,address ,vcode} = req.body;
+    // console.log('vcode=', vcode, req.session.vcode);
 
     if (vcode.toLowerCase() === req.session.vcode) {
 
         // 写入数据库
         try {
-            await db.create('usersinfo', { username, password, regtime: new Date() })
+            await db.create('usersinfo', { username, password,age,address })
             console.log('user=', username, password)
             res.send({
                 code: 200

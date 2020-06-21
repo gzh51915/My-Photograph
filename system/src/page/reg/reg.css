@@ -1,0 +1,9 @@
+.reg{
+    width: 400px;
+    background: #ccc;
+    margin: 100px auto;
+    padding: 30px;
+}
+.regButton{
+width: 100%;
+}
