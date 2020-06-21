@@ -4,7 +4,7 @@ const {MongoClient,ObjectId} = mongodb;//{_id:ObjectId(id)}
 
 const config = {
     dburl:'mongodb://localhost:27017',
-    dbname:'h5'
+    dbname:'test'
 }
 
 const connect = ()=>{

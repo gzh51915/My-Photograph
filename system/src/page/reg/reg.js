@@ -12,8 +12,10 @@ export default class Reg extends React.Component {
         const password = this.refs.password.props.value;
         const age = this.refs.age.props.value;
         const address = this.refs.address.props.value;
-        const vcode = this.refs.vcode.props.value;
-        console.log(username, password, age, address)
+        const vvv = this.refs.vvv.value;
+        // const vcode = this.refs.vcode.value;
+        console.log(username, password, age, address,vvv)
+        console.log(this.refs.vvv,99999999)
 
         if (!username) {
             alert("请输入用户名")
@@ -23,12 +25,13 @@ export default class Reg extends React.Component {
             alert("请输入年龄")
         } else if (!address) {
             alert("请输入地址")
-        } else if (!vcode) {
+        } else if (!vvv) {
             alert("请输入验证码")
         }
         else {
-            let result = await resReg(username, password, age, address, vcode)
-            if (result.code === 200) {
+            let result = await resReg(username, password, age, address, vvv)
+            let vcode = sessionStorage.getItem("vcode")
+            if (vvv===vcode) {
                 message.success("注册成功")
                 this.props.history.replace("/login")
             } else {
@@ -39,14 +42,16 @@ export default class Reg extends React.Component {
 
     svg = async () => {
         let svg = await resSvg()
+        sessionStorage.setItem("vcode",svg.vcode)
         this.setState({
-            data: svg
+            data: svg.data
         })
     }
     async componentDidMount() {
         let svg = await resSvg()
+        sessionStorage.setItem("vcode",svg.vcode)
         this.setState({
-            data: svg
+            data: svg.data
         })
 
     }
@@ -89,8 +94,8 @@ export default class Reg extends React.Component {
                     >
                         <Input ref="address" />
                     </Form.Item>
-
-                    验证码：<Input ref="vcode" style={{ width: 150, marginBottom: 20 }}></Input>
+{/* <input ref="vcode"></input> */}
+                    验证码：<input ref="vvv" style={{ width: 150, marginBottom: 20 }}></input>
                     <span onClick={this.svg} className="svg" style={{ height: 40 }} dangerouslySetInnerHTML={{ __html: this.state.data }}></span>
 
                     <Form.Item>

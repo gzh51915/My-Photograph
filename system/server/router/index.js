@@ -6,14 +6,20 @@ const session = require('express-session');
 
 const goods = require('./goods'); // express.router()
 const user = require('./user');
-// const verifycode = require('./verifycode');
+const verifycode = require('./verifycode');
 
 // CORS
 Router.use((req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
-    res.header("Access-Control-Allow-Methods","PATCH,POST,GET,DELETE,OPTIONS");
+    // res.header("Access-Control-Allow-Origin", "*");
+    // res.header("Access-Control-Allow-Headers", "Content-Type,Content-Length, Authorization, Accept,X-Requested-With");
+    // res.header("Access-Control-Allow-Methods","PATCH,POST,GET,DELETE,OPTIONS");
 
+
+    res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+    res.header('Access-Control-Allow-Methods', 'PATCH, GET, POST, DELETE, OPTIONS');
+    res.header('Access-Control-Allow-Credentials', 'true');
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header('Access-Control-Allow-Headers', 'Content-Type');
     // 跨域请求CORS中的预请求
     if(req.method=="OPTIONS") {
         res.sendStatus(200);/*让options请求快速返回*/

@@ -17,11 +17,11 @@ export const resRemove = (id) =>
   });
 
 // 修改数据请求
-export const resUpdate =(id,title, price,respricce)=> axios({
+export const resUpdate =(id,title, price,resprice)=> axios({
     method: "PATCH",
     url: "/goods/update/"+id,
     data:{
-      title, price,respricce
+      title, price,resprice
     }
 })
 

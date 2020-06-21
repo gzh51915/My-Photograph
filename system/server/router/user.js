@@ -1,6 +1,7 @@
 
 const express = require('express');
 const Router = express.Router(); // function(){}
+const session=require("express-session");
 
 const db = require('../db')
 // const token = require('../utils/token')
@@ -15,14 +16,14 @@ Router.get('/', (req, res) => {
 // 注册：添加一个用户
 Router.post('/', async (req, res) => {
     // 获取username,password
-    const { username, password, age,address ,vcode} = req.body;
+    const { username, password, age,address } = req.body;
     // console.log('vcode=', vcode, req.session.vcode);
 
-    if (vcode.toLowerCase() === req.session.vcode) {
+    // if (vcode.toLowerCase() === req.session.vcode) {
 
         // 写入数据库
         try {
-            await db.create('usersinfo', { username, password,age,address })
+            await db.create('ttt', { username, password,age,address })
             console.log('user=', username, password)
             res.send({
                 code: 200
@@ -35,12 +36,12 @@ Router.post('/', async (req, res) => {
             })
         }
 
-        delete req.session.vcode;
-    } else {
-        res.send({
-            code: 401
-        })
-    }
+        // delete req.session.vcode;
+    // } else {
+    //     res.send({
+    //         code: 401
+    //     })
+    // }
 })
 
 // 登录
@@ -49,7 +50,7 @@ Router.post('/login', async (req, res) => {
 
     // 查询数据库，如果得到数据说明用户名和密码正确
     // 反之，查询不到数据，则表示用户名和密码错误
-    const result = await db.find("usersinfo", { username, password })
+    const result = await db.find("ttt", { username, password })
     console.log('111111111111111',result);
     if (result.length > 0) {
         // 生成一个token，并返回给前端
