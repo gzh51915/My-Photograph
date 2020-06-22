@@ -15,7 +15,6 @@ export default class list extends Component {
     }
     goto = (title)=>{
         const {history} = this.props
-        console.log(title);
         
         history.push('/list2/' + title)
     }
@@ -27,7 +26,6 @@ export default class list extends Component {
     }
     render() {
         const {list} = this.state
-        console.log(list);
         
         return (
             <div>

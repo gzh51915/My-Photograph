@@ -3,6 +3,13 @@ import img from '../image/top-bg.png'
 import '../css/mine.css'
 
 class mine extends Component {
+    constructor(props){
+        super(props)
+    }
+    goto = (path)=>{
+        const {history} = this.props
+        history.push(path)
+    }
     render() {
         return (
             <div className="mine">
@@ -10,7 +17,11 @@ class mine extends Component {
                     <span className="imgs">
                         <p className="top">
                             登录春秋，即刻启程
-                            <a className="bot"><span>登录</span>/<span>注册</span></a>
+                            <a className="bot"><span onClick={()=>{
+                                this.goto('/login')
+                            }}>登录</span>/<span onClick={()=>{
+                                this.goto('/reg')
+                            }}>注册</span></a>
                         </p>
                     </span>
                 </div>
