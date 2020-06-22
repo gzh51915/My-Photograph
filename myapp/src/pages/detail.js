@@ -1,6 +1,6 @@
 import React ,{Component} from 'react'
-import {Carousel, Card} from 'antd'
-import {ArrowLeftOutlined,InfoCircleOutlined} from '@ant-design/icons'
+import {Carousel,Button,message} from 'antd'
+import {ArrowLeftOutlined,InfoCircleOutlined,CustomerServiceOutlined,HeartOutlined} from '@ant-design/icons'
 import http from '../utils/http'
 import '../css/detail.css'
 
@@ -11,20 +11,23 @@ export default class detail extends Component {
         this.state = {
             data:[],
             title:"",
-            card:[]
+            card:[],
         }
     }
     async componentDidMount(){
         const {id} = this.props.match.params
         let data = await http.get("/detail/" + id)
-        
         this.setState({
             data:data[0],
             title:eval(data[0].destinationCity)[0],
-            card:eval(data[0].productThemes)
+            card:eval(data[0].productThemes),
         })
         
     }
+    success = () => {
+        message.success('提交成功');
+      };
+      
     back = ()=>{
         const {title} = this.state
         const {history} = this.props
@@ -32,10 +35,9 @@ export default class detail extends Component {
       }
     render() {
         const {data,card} = this.state
-        console.log(data);
         
         return (
-            <div>
+            <div className="detail">
                 <header className="page-head">
                     <a>
                         <i>
@@ -49,12 +51,12 @@ export default class detail extends Component {
                 </Carousel>
                 <section className="detail-title">
                     <div className="h2">
-                    【多重礼遇花样游】长白山4日3晚自由行●宿万达智选假日酒店（高级房+趣味骑行+西坡巴士+限时水乐园+延迟退房+接送机）
+                        {data.name}
                     </div>
                     <div className="item-money">
                     <span className="crred" id="price">
                         ￥
-                        <em>1174</em>
+                        <em>1179</em>
                         <label className="cr6">起/人</label></span>
                         <InfoCircleOutlined style={{color:"#0080FF"}}/>
                     </div>
@@ -67,7 +69,39 @@ export default class detail extends Component {
                             }
                         </div>
                     </div>
+                    <div className="item-brand">
+                        <i className="bgred" style={{backgroundColor: "rgb(0, 190, 136)"}}>春秋假期</i>
+                        <p>以度假为主的自由行品牌。</p>
+                    </div>
+                    <section className="item-illustrate">
+                        <span>
+                            优惠：
+                        </span>
+                        <span className="t-inner">
+                        ★ 夏季礼遇1：酒店每间夜含2人度假区
+                        </span>
+                    </section>
                 </section>
+                {/* 按钮 */}
+                <div className="btn">
+                    <ul>
+                        <li>
+                            <i className="icon-phone"><HeartOutlined /></i>收藏
+                        </li>
+                        <li>
+                            <i className="icon-phone">
+                            <CustomerServiceOutlined /></i>客服
+                        </li>
+                        <li>
+
+                            <Button onClick={
+                                    this.success
+                                } style={{width:225,height:"100%",color:"#fff",backgroundColor:"#f84",fontSize:16}}>提交意向
+                            </Button>
+                        </li>
+                        
+                    </ul>
+                </div>
             </div>
         )
     }

@@ -50,6 +50,42 @@ h1,h2,h4,h5,h6,h3,b,strong{font-weight: normal;}
 .margintb{
     margin: 0 !important;
 }
+.detail-banner{
+    height: vw(410) !important;
+}
+.page-head{
+    p{
+        display: inline-block;
+        text-align: right;
+        position: absolute;
+        right: vw(10);
+    }
+}
+.login-img{
+    width: vw(120);
+    height: vw(120);
+    margin: vw(20) auto;
+    border: 2px solid #f0f3f2;
+    border-radius: 100%;
+    img{
+        width: 100%;
+    }
+}
+.login-input{
+    margin: 0 auto;
+    width: vw(630);
+    li{
+        margin-bottom: vw(20);
+    }
+}
+.login-btn{
+    margin: 0 auto;
+    width: vw(630);
+    .ant-btn-block{
+        border-radius: 1.83rem !important;
+        background: -webkit-linear-gradient(left,#00be88,#00be89) !important;
+    }
+}
 footer {
     position: fixed;
     z-index: 10;
