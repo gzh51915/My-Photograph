@@ -29,11 +29,11 @@ class UserInfo extends React.Component {
         },
         {
           title: "原价",
-          dataIndex: "resprice",
+          dataIndex: "price",
         },
         {
           title: "现价",
-          dataIndex: "price",
+          dataIndex: "resprice",
         },
         {
           title: "操作",
