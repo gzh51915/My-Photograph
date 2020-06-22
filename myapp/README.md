@@ -1,68 +1,47 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 项目介绍
 
-## Available Scripts
+- 项目名称：   春秋旅游
+  - 官网：       http://m.springtour.com/
+  - 上线网址：   
+    * webapp：http://47.105.164.196:1912/home
+    * 后台管理系统：
+  - git仓库地址 ：https://github.com/gzh51915/Spring-Autumn
+- 团队与分工
+  - 组长：温家鸿       
+  - 成员：王灿辉，宋权库，方文涛
+- 负责模块说明
+      * 温家鸿：
+          * 搭建项目脚手架、安装基本的插件
+          * 利用antd的组件完成首页页面的数据渲染
+          * 利用antd-ui框架完成列表页和二级列表的页面渲染和跳转功能
+          * 编写路由的配置，利用react-route-dom实现底部导航栏跳转
+          * 负责用nodejs搭建后台服务器，并且写好接口，
+          * 完成注册登录页面的跳转及渲染
+          * 项目上线
+      * 方文涛：
+          * 完成了“我的”页面的渲染
+          * 完成了“发现”页面的渲染 
+      * 宋权库：
+          * 后台接口编写
+          * 页面搭建
+          * 实现删除功能
+      * 王灿晖:
+          * 登录注册
+          * 实现增加编辑功能
+- webapp页面
+   * ![首页](src/image/home.png)
+   * ![目的地](src/image/list.png)
+   * ![二级列表](src/image/list2.png)
+- webapp项目目录
+    - src
+        * components 组件文件
+        * css        样式文件
+        * image      图片文件
+        * pages      页面文件
+        * utils      工具文件
+    - node_modules   模块文件
+    - public         
+    
 
-In the project directory, you can run:
 
-### `npm start`
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
