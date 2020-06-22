@@ -101,7 +101,7 @@ export default class list2 extends Component {
               </TabPane>
             </Tabs>
             
-            <Tabs defaultActiveKey="0" tabPosition={mode} style={{ height: 400 }}>
+            <Tabs defaultActiveKey="0"  style={{ height: 400 }}>
               {[...Array(30).keys()].map(i => (
                 <TabPane tab={`Tab-${i}`} key={i}>
                   Content of tab {i}
