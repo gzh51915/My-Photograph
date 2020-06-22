@@ -21,9 +21,9 @@ export default class list2 extends Component {
         })
         
       }
-      goto = (id)=>{
+      goto = (id,price)=>{
         const {history} = this.props
-        history.push('/detail/' + id)
+        history.push({ pathname: `/detail/${id}`, state:  {price}  })
       }
       back = ()=>{
         const {history} = this.props
@@ -31,7 +31,6 @@ export default class list2 extends Component {
       }
       render() {
         const {data} = this.state
-        console.log(data);
         return (
           <div>
             <header className="page-head">
